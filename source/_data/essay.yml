@@ -1,4 +1,11 @@
-- class_name: 即刻短文
+- title: 即刻短文
+  subTitle: Juns的日常生活。
+  tips: 随时随地，分享生活
+  buttonText: 关于我
+  buttonLink: /about/
+  limit: 30
+  home_essay: true
+  top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
-    - content: 遇见彩虹🌈吃定彩虹
-      date: 2023/5/9 10:00:00
+    - content: blog更新了！
+      date: 2023/11/18
