@@ -1,0 +1,91 @@
+- class_name: 关于页
+  subtitle: 生活明朗，万物可爱✨
+  avatarImg: https://pic2.imgdb.cn/item/6459f5ec0d2dde5777fcae3d.png
+  name: Juns
+  description: 是一名 前端工程师、学生、独立开发者
+  aboutsiteTips:
+    tips: 追求
+    title1: 源于
+    title2: 热爱而去 感受
+    word:
+      - 学习
+      - 生活
+      - 程序
+      - 体验
+  helloAbout: Hello there!
+  skillsTips:
+    tips: 技能
+    title: 开启创造力
+  careers:
+    tips: 生涯
+    title: 无限进步
+    item:
+      - 电子信息工程专业
+    img: https://img02.anzhiy.cn/adminuploads/1/2022/09/26/6330e9bcc39cc.png
+  statistic:
+    link: /archives
+    text: 文章隧道
+    cover: https://img02.anzhiy.cn/adminuploads/1/2022/09/23/632d634f8376d.jpg
+  map:
+    title: 我现在住在
+    StrengthenTitle: 中国，河北省
+    background: https://img02.anzhiy.cn/adminuploads/1/2022/09/24/632e6f48981d8.jpg
+    backgroundDark: https://img02.anzhiy.cn/adminuploads/1/2022/09/26/6330ebf1f3e65.jpg
+  selfInfo:
+    selfInfoTips1: 生于
+    selfInfoContentYear: 2003
+    selfInfoTips2: 东北大学
+    selfInfoContent2: 电子信息工程
+    selfInfoTips3: 现在职业
+    selfInfoContent3: 大二学生👨‍🎓
+  personalities:
+    author_name: 鉴赏家
+    personality_type: ISTP-A
+    photo_url: https://pic2.imgdb.cn/item/6459f9d00d2dde57770320e6.jpg
+    personality_img: https://pic2.imgdb.cn/item/6459fb560d2dde5777048bcf.png
+    name_url: https://www.16personalities.com/ch/istp-%E4%BA%BA%E6%A0%BC
+  maxim:
+    maxim_tips: 个性标签
+    maxim_top: 生活明朗，
+    maxim_bottom: 万物可爱。
+  buff:
+    buff_tips: 特长
+    buff_top: 脑回路新奇的 酸菜鱼
+    buff_bottom: 二次元指数 MAX
+  game:
+    game_tips: 爱好游戏
+    game_title: 蛋仔派对
+    game_uid: "UID: null"
+    game_bg: https://pic2.imgdb.cn/item/6459fbe20d2dde5777050707.jpg
+  comic:
+    comic_tips: 爱好番剧
+    comic_title: 追番
+    comic_list:
+      - name: 约定的梦幻岛
+        href: https://www.bilibili.com/bangumi/media/md5267750/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/63988658aa1b1.webp
+      - name: 咒术回战
+        href: https://www.bilibili.com/bangumi/media/md28229899/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/6398864e572ed.webp
+      - name: 紫罗兰永恒花园
+        href: https://www.bilibili.com/bangumi/media/md8892/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/639886315d658.webp
+      - name: 鬼灭之刃
+        href: https://www.bilibili.com/bangumi/media/md22718131/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/639886403d472.webp
+      - name: JOJO的奇妙冒险 黄金之风
+        href: https://www.bilibili.com/bangumi/media/md135652/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
+        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/6398862649585.webp
+  like:
+    like_tips: 关注偏好
+    like_title: 数码科技
+    like_bg: https://img02.anzhiy.cn/adminuploads/1/2022/09/24/632f0dd8f33c6.webp
+    like_bottom: 手机、电脑软硬件
+  music:
+    music_tips: 音乐偏好
+    music_title: 一切好听的音乐🎶
+    music_bg: http://p2.music.126.net/EEKfs6vrZFaY_owE2fgRwA==/109951163175701373.jpg
+    music_link: /music
+  reward_list:
+
+  extra: false
