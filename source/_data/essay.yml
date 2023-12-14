@@ -7,6 +7,9 @@
   home_essay: true
   top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
+    - content: 推荐一个JS风格网站 https://github.com/airbnb/javascript
+      date: 2023/12/14
+      link: https://github.com/airbnb/javascript
     - content: 😫😖😣😞😔😩🤕
       date: 2023/12/4
     - content: 我好懒，不想更新🥹
