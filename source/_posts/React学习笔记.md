@@ -205,6 +205,17 @@ function App() {
 
 ### 状态 和 useState
 
-> 2023.12.23 03:19 学到了p20
+> 2023.12.24 02:48 学到了p22
 >
-> https://www.bilibili.com/video/BV13h4y177jW/?p=20&share_source=copy_web&vd_source=fec74aa0dc6bc131c090122b391ab233
+> https://www.bilibili.com/video/BV13h4y177jW/?p=22&share_source=copy_web&vd_source=fec74aa0dc6bc131c090122b391ab233
+
+- 什么是状态？
+  - 随时间变化的数据被称为状态（state），状态可以数据驱动视图，但是普通的变量不可以
+  - `useState`是可以创建修改状态的方法
+- 状态是如何改变视图的
+  - 普通变量无法重新渲染jsx
+  - state状态可以重新触发函数组件
+
+
+
+​	
