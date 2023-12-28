@@ -7,6 +7,9 @@
   home_essay: true
   top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
+    - content: 今天打算整理这个视频的内容以及启示:【一个普通人，如何最大限度「过好」2024？用游戏心理学，重塑你的激励系统！】 https://www.bilibili.com/video/BV1AT4y1x7bc
+      date: 2023/12/28
+      link: https://www.bilibili.com/video/BV1AT4y1x7bc
     - content: 推荐一个JS风格网站 https://github.com/airbnb/javascript
       date: 2023/12/14
       link: https://github.com/airbnb/javascript
