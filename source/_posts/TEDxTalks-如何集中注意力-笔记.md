@@ -4,7 +4,7 @@ tags:
   - TEDxTalks
   - 学习
   - 专注
-categories: TEDxTalks
+categories: 个人思考
 cover: 'https://meditationlifestyle.com/wp-content/uploads/2019/10/ted.jpg'
 abbrlink: 36195
 date: 2023-12-28 02:43:50
@@ -36,6 +36,8 @@ date: 2023-12-28 02:43:50
 
 ## 行动
 
-1. 减少手机使用时间，每天尽量不超过60分钟
+1. 减少手机使用时间，每天尽量不超过2h
 1. 减少碎片时间花费，知乎/抖音/小红书/短视频等，小于30min
+   1. 目前各限制每日使用时间15min
 1. 每日游戏时间控制，统计汇总，尽量小于30min
+   1. 通过手机设备时间限制来实现
