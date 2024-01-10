@@ -249,16 +249,187 @@ function App() {
 - 对象/数组的解决方案
 
   - 避免使用会修改原数组的方法，推荐使用返回新值的方法，或者直接拷贝（深拷贝面试要点！）
-  - 深拷贝会带来性能问题，引入了一个`immer`模块来减少性能消耗
+  - 深拷贝会带来性能问题，可以引入`immer`模块来减少性能消耗
+
+- 惰性初始化值，`useState`可以传入一个函数，但是会每次都触发，有性能问题，所以可以直接写一个匿名函数来解决这个问题
+
+  - ```tsx
+    import { useState } from 'react'
+    
+    function computed(n: number) {
+      console.log('computed函数被调用了') // 每次点击都会触发
+      return n + 3
+    }
+    
+    function App() {
+      const [count, setCount] = useState(computed(0))
+      const [count, setConut] = useState(() => computed(0)) // 只有初始化的时候会调用一次
+      const handleClick = () => {
+        setCount(count + 1)
+      }
+      return (
+          <button onClick={handleClick}>{count}</button>
+      )
+    }
+    ```
+
+- 状态提升来解决共享问题
+
+  - 就是把子组件的状态提升到父组件中，通过`props`传递给子组件
+
+- 状态的重置处理问题
+
+  - 组件被销毁时，状态会被重置
+
+  - 当组件位置没有发生变化时，状态会被保留
+
+  - 结构不同或者添加了key，状态会重置
+
+  - ```tsx
+    {/* 组件的状态会被保留 */ }
+    { isStyle ? <Counter style={{ border: '1px red solid' }} /> : <Counter /> }
+    {/* 结构不同时会重置状态 */ }
+    { isStyle ? <Counter style={{ border: '1px red solid' }} /> : <div><Counter /></div> }
+    {/* 添加key也会重置状态 */ }
+    { isStyle ? <Counter style={{ border: '1px red solid' }} key='counter1' /> : <Counter key='counter2' /> }
+    ```
+
+- 利用状态产生计算变量
+
+  - 类似`vue`中的`computed`
+
+  - 因为重新渲染组件的时候拿到的状态快照都是新的，所以直接用普通变量就可以了
+
+  - ```tsx
+    function App() {
+      const [count, setCount] = useState(0)
+      const doubleCount = count * 2
+      return (
+          <div className={style.box}>
+            <button onClick={() => setCount(count + 1)}>count: {count}</button>
+            <button>doubleCount: {doubleCount}</button>
+          </div>
+      )
+    }
+    ```
+
+实战：写一个`todoList`组件
+
+```tsx
+import { useMemo, useState } from 'react'
+import styles from './index.module.css'
+
+interface ListItem {
+  id: string
+  content: string
+  isDone: boolean
+}
+
+interface ChildProps {
+  isDone: boolean
+  list: ListItem[]
+  handleChangeStatus: (id: string) => void
+}
+
+function Child({ isDone, list, handleChangeStatus }: ChildProps) {
+  return (
+    <div className={styles['flex-box']}>
+      <h2>
+        {isDone ? '已' : '未'}完成的任务: {list.length}个
+      </h2>
+      <ul>
+        {list.map(item => (
+          <li key={item.id}>
+            <input
+              type='checkbox'
+              checked={item.isDone}
+              onChange={() => handleChangeStatus(item.id)}
+            />
+            <span className={isDone ? styles['done-item'] : ''}>
+              {item.content}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function TodoList() {
+  console.log('渲染一次')
+  const [msg, setMsg] = useState('')
+  const [list, setList] = useState<ListItem[]>([])
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setMsg(e.target.value)
+  }
+
+  function handleAdd() {
+    if (!msg.trim()) return
+    setList([
+      ...list,
+      {
+        id: Date.now().toString(),
+        content: msg,
+        isDone: false,
+      },
+    ])
+    setMsg('')
+  }
+
+  const unDoneList = useMemo(() => list.filter(item => !item.isDone), [list])
+  const doneList = useMemo(() => list.filter(item => item.isDone), [list])
+
+  function handleChangeStatus(id: string) {
+    setList(prevList => {
+      const newList = prevList.map(item => {
+        if (item.id !== id) return item
+        return {
+          ...item,
+          isDone: !item.isDone,
+        }
+      })
+      return newList
+    })
+  }
+
+  return (
+    <div className={styles.container}>
+      <div className={styles['flex-box']}>
+        <div>
+          <input
+            className={styles.input}
+            value={msg}
+            onChange={handleInputChange}
+          />
+          <button onClick={handleAdd}>添加任务</button>
+        </div>
+      </div>
+      <Child
+        list={unDoneList}
+        isDone={false}
+        handleChangeStatus={handleChangeStatus}
+      />
+      <Child
+        list={doneList}
+        isDone
+        handleChangeStatus={handleChangeStatus}
+      />
+    </div>
+  )
+}
+
+export default TodoList
+```
 
 
-> 2024.1.5 23点记录
->
-> 【千锋教育前端React18系统精讲教程，基于最新版本新特性源码级剖析】 https://www.bilibili.com/video/BV13h4y177jW/?p=28&share_source=copy_web&vd_source=fec74aa0dc6bc131c090122b391ab233
 
+## Hooks进阶
 
+### 什么是hooks
 
+- 在`Reac`t 中，`useState` 以及任何其他以"use〞开头的函数都被称为 `Hook`（即钩子），所以`Hooks`就是代表着use函数的集合，也就是钩子的集合
+- `Hooks`其实就是一堆功能函数，一个组件想要实现哪些功能就可以引入对应的钩子函数，像插件一样非常的方便
 
+### useRef
 
-
-​	
