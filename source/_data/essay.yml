@@ -7,6 +7,9 @@
   home_essay: true
   top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
+    - content: 前端瓶子君进阶教程
+      date: 2024/1/11
+      link: https://github.com/sisterAn/blog
     - content: 我们总是在以自己想要被爱的方式去爱别人。
       date: 2024/1/10
     - content: 感觉谈恋爱是一个认识了解自己的过程，去了解自己能付出什么，自己需要什么样的爱情。
