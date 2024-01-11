@@ -5,7 +5,7 @@ tags:
   - 学习
   - 前端
 categories: 前端
-cover: 'https://www.krishnakantyadav.com/blog/wp-content/uploads/2022/03/ReactJS-Everything-You-Should-Know-About-It.png'
+cover: 'https://jslib.dev/wp-content/uploads/2022/03/Reactlogo.jpg'
 abbrlink: 45055
 date: 2023-12-23 01:33:56
 ---
@@ -203,7 +203,7 @@ function App() {
 
 
 
-### 状态 和 useState
+### 状态 和 [useState](https://react.dev/reference/react/useState)
 
 > 2023.12.24 02:48 学到了p22
 >
@@ -431,5 +431,187 @@ export default TodoList
 - 在`Reac`t 中，`useState` 以及任何其他以"use〞开头的函数都被称为 `Hook`（即钩子），所以`Hooks`就是代表着use函数的集合，也就是钩子的集合
 - `Hooks`其实就是一堆功能函数，一个组件想要实现哪些功能就可以引入对应的钩子函数，像插件一样非常的方便
 
-### [useRef](https://react.dev/reference/react/useRef)
+### ref 和 [useRef](https://react.dev/reference/react/useRef)
 
+`useRef(initialValue)`返回的是`{ current: initialValue }`
+
+他是可以改变的，改变时也不会触发重新渲染
+
+用法：
+
+#### 用`ref`引用一个值做记忆功能
+
+```tsx
+import { useRef, useState } from 'react'
+
+function App() {
+  const [count, setCount] = useState(0)
+  const num = useRef(0)
+  function handleClick() {
+    setCount(count + 1)
+    num.current++
+    console.log('🚀 ~ num:', num)
+  }
+  return <button onClick={handleClick}>count: {count}</button>
+}
+```
+
+和`useState`的区别
+
+|                           **ref**                            |                          **state**                           |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+|  `useRef(initialValue)`返回的是`{ current: initialValue }`   | `useState(initialValue)`返回的是`state`变量的当前值和一个`state`设置函数 |
+|                     更改时不触发重新渲染                     |                      更改时触发重新渲染                      |
+|    可变 —— 可以在渲染过程之外修改和更新`ref.current`的值     | 不可变 —— 必须用提供的舍之函数来修改`state`变量，然后排队重新渲染 |
+| 在渲染过程中不要写入或读取 `ref.current` ，初始化除外。这使得组件的行为不可预测。 |    可以随时读取`state`。但是每次渲染都有不变的`state`快照    |
+
+使用场景：定时器的清除
+
+```tsx
+// 这样会导致多个定时器同时运行，无法正确清除
+const [count, setCount] = useState(0)
+let timer: number | null = null
+function handleClick() {
+  setCount(count + 1)
+  if(timer){
+    clearInterval(timer)
+  }
+  timer = setInterval(() => {
+    console.log(111)
+  }, 1000)
+}
+```
+
+
+
+```tsx
+const [count, setCount] = useState(0)
+const timer = useRef<number | null>(null)
+function handleClick() {
+  setCount(count + 1)
+  if (timer.current) {
+    clearInterval(timer.current)
+  }
+  timer.current = setInterval(() => {
+    console.log(111)
+  }, 1000)
+}
+```
+
+#### 通过`ref`操作`DOM`
+
+```tsx
+function App() {
+  const divRef = useRef<HTMLDivElement>(null)
+  function handleClick() {
+    if (!divRef.current) return
+    console.log(divRef.current.innerHTML)
+    // 通过ref操作原生DOM
+    divRef.current.style.background = 'red'
+  }
+  return (
+    <>
+      <div className={style.box}>
+        <button onClick={handleClick}>click</button>
+        <div ref={divRef}>112131</div>
+      </div>
+    </>
+  )
+}
+```
+
+在逻辑中通过`ref`操控`DOM`
+
+```tsx
+function App() {
+  const list = [
+    { id: 11, text: '234' },
+    { id: 131, text: '23432' },
+    { id: 141, text: '23224' },
+  ]
+  return (
+    <ul>
+      {list.map(item => (
+        <li
+          key={item.id}
+          ref={myRef => {
+            console.log(myRef)
+            myRef.style.backgroundColor = 'red'
+          }}
+        >
+          {item.text}
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+
+
+#### 使用`fowWardRef`转发`ref`
+
+当组件添加`ref`属性的时候，需要`forwardRef`进行转发，`forwardRef`让组件通过` ref` 向父组件公开DOM 节点
+
+```tsx
+const MyInput = forwardRef<HTMLInputElement>((_, inputRef) => {
+  return <input ref={inputRef} />
+})
+
+function App() {
+  const inputRef = useRef<HTMLInputElement>(null)
+  function handleClick() {
+    if (!inputRef.current) return
+    inputRef.current.focus()
+    inputRef.current.style.backgroundColor = 'red'
+  }
+  return (
+    <>
+      <button onClick={handleClick}>click</button>
+      <MyInput ref={inputRef} />
+    </>
+  )
+}
+```
+
+
+
+#### [useImperativeHandle](https://react.dev/reference/react/useImperativeHandle) 自定义`ref`的暴露
+
+其实就类似`vue`的`defineExpose`
+
+```tsx 
+interface InputRef {
+  focus: () => void
+}
+
+const MyInput = forwardRef<InputRef>((_, inputRef) => {
+  const innerRef = useRef<HTMLInputElement>(null)
+  useImperativeHandle(inputRef, () => ({
+    focus() {
+      innerRef.current?.focus()
+    },
+  }))
+  return <input ref={innerRef} />
+})
+
+function App() {
+  const inputRef = useRef<InputRef>(null)
+  function handleClick() {
+    if (!inputRef.current) return
+    inputRef.current.focus()
+  }
+  return (
+    <>
+      <button onClick={handleClick}>click</button>
+      <MyInput ref={inputRef} />
+    </>
+  )
+}
+```
+
+
+
+### 副作用 和 [useEffect](https://react.dev/reference/react/useEffect)
+
+> 2024.1.11 20点 【千锋教育前端React18系统精讲教程，基于最新版本新特性源码级剖析】 https://www.bilibili.com/video/BV13h4y177jW/?p=39&share_source=copy_web&vd_source=fec74aa0dc6bc131c090122b391ab233
