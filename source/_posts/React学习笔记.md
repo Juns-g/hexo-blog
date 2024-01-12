@@ -614,4 +614,353 @@ function App() {
 
 ### 副作用 和 [useEffect](https://react.dev/reference/react/useEffect)
 
-> 2024.1.11 20点 【千锋教育前端React18系统精讲教程，基于最新版本新特性源码级剖析】 https://www.bilibili.com/video/BV13h4y177jW/?p=39&share_source=copy_web&vd_source=fec74aa0dc6bc131c090122b391ab233
+- 纯函数的概念
+  - 只负责自己的任务，它不会更改在该函数调用前就己存在的对象或变
+  - 输入相同，则输出相同。给定相同的输入，纯函数应总是返回相同的结果
+- 副作用的概念
+  - 函数在执行过程中对外部造成的影响称之为副作用，例如：Ajax调用，DOM操作，与外部系统同步等
+  - 在React组件中，事件操作是可以处理副作用的，但有时候需要初始化处理副作用，那么就需要useEffec钩子
+
+#### 基本使用
+
+```tsx
+function App() {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  // 可以在初始的时候进行副作用操作
+  // useEffect触发的时机：JSX渲染后触发的
+  // 初始渲染和更新渲染，都会触发
+  useEffect(() => {
+    if (!inputRef.current) return
+    inputRef.current.focus()
+  })
+
+  return (
+    <>
+      <button>click</button>
+      <input ref={inputRef} />
+    </>
+  )
+}
+```
+
+可以指定依赖项，初始的时候所有的`useEffect`都会触发，之后只有依赖更新的时候才会触发，内部其实是通过`Object.is()`来判断是否改变的
+
+当依赖项是空数组的时候，只会初始触发，更新不触发,**无依赖项是每次更新触发**
+
+```tsx
+function App() {
+  const [count, setCount] = useState(0)
+  const [msg] = useState('hello')
+  useEffect(() => {
+    console.log(count)
+  }, [count])
+  useEffect(() => {
+    console.log(msg)
+  }, [msg])
+
+  return (
+    <>
+      <button
+        onClick={() => {
+          setCount(count + 1)
+        }}
+      >
+        {count}++
+      </button>
+      <button>{msg}</button>
+    </>
+  )
+}
+```
+
+#### 尽量在`useEffect`内部定义函数
+
+因为对于依赖是否改变是调用的`Object.is()`，但是俩个函数的内存地址是不一样的`Object.is(function(){}, function(){}) === false`，所以说定义在外部的函数作为依赖项，会导致每次都刷新。也可以用`useCallback`来解决。
+
+```tsx
+const [count, setCount] = useState(0)
+
+const logCount = useCallback(() => {
+  console.log(count)
+}, [count])
+
+useEffect(() => {
+  logCount()
+}, [logCount])
+// 但是这样过其实是很麻烦的
+```
+
+最好的解决办法就是把函数定义在`useEffect`内部
+
+```tsx
+const [count, setCount] = useState(0)
+
+useEffect(() => {
+  const logCount = () => {
+    console.log(count)
+  }
+  logCount()
+}, [count])
+```
+
+
+
+#### 清理操作的重要性
+
+```tsx
+import { useEffect, useState } from 'react'
+
+function Child({ title }: { title: string }) {
+  useEffect(() => {
+    console.log('子组件挂载', title)
+    // useEffect 的清理工作
+    // 卸载当前组件的时候，会执行清理工作
+    return () => {
+      console.log('子组件卸载', title)
+    }
+  }, [title])
+  return <p>我是子组件: {title}</p>
+}
+
+function App() {
+  const [isShow, setIsShow] = useState(true)
+  const [title, setTitle] = useState('聊天室1')
+
+  const handleChange = (e: any) => {
+    setTitle(e.target.value)
+  }
+
+  return (
+    <>
+      父组件!!!!!!
+      <select
+        onChange={handleChange}
+        value={title}
+      >
+        <option value='聊天室1'>聊天室1</option>
+        <option value='聊天室2'>聊天室2</option>
+      </select>
+      <button
+        onClick={() => {
+          setIsShow(!isShow)
+        }}
+      >
+        卸载子组件
+      </button>
+      {isShow && <Child title={title} />}
+    </>
+  )
+}
+```
+
+初始化数据时，要注意清理操作，所以更简洁的方式是使用第三方的hook
+
+
+
+#### 实验性的[useEffectEvent](https://react.dev/reference/react/experimental_useEffectEvent)
+
+可以将非响应式逻辑提取到效果事件中
+
+`const onSomething = useEffectEvent(callback)`
+
+
+
+#### [useLayoutEffect](https://react.dev/reference/react/useLayoutEffect) 同步执行状态更新
+
+`useEffect`是在渲染被绘制到屏幕之后执行的，是异步的
+
+`useLayoutEffect`是在渲染之后但在屏幕更新之前，是同步的
+
+大部分情况下我们采用`useEffect`，性能更好。
+
+但当你的`useEffect`里面的操作需要处理DOM，并且会改变页面的样式，就需要用`useLayoutEffect`，否则可能会出现闪屏问题
+
+
+
+#### [useInsertionEffect](https://react.dev/reference/react/useInsertionEffect) DOM更新前触发
+
+应用场景非常少，因为获取不到DOM元素，所以只在CSS-in-JS库中才会使用
+
+
+
+### [useReducer](https://react.dev/reference/react/useReducer)统一的状态管理集合
+
+是处理状态的另一种方式，可以把更改状态的逻辑集合起来
+
+```tsx
+import { useReducer } from 'react'
+
+interface ListItem {
+  id: number
+  text: string
+}
+
+type ListState = ListItem[]
+
+interface ListAction {
+  type: string
+  id?: number
+}
+
+function listReducer(state: ListState, action: ListAction): ListState {
+  switch (action.type) {
+    case 'add':
+      return [...state, { id: Math.random(), text: 'new!!!' }]
+    case 'edit':
+      return state.map(item => {
+        if (item.id !== action.id) return item
+        return {
+          ...item,
+          text: 'edit!!!' + item.text,
+        }
+      })
+    case 'delete':
+      return state.filter(item => item.id !== action.id)
+    default:
+      return state
+  }
+}
+function App() {
+  const [list, listDispatch] = useReducer(listReducer, [
+    { id: 1, text: '213' },
+    { id: 13, text: '2143' },
+    { id: 11, text: '2413' },
+  ])
+  return (
+    <div className={style.box}>
+      <button
+        onClick={() => {
+          listDispatch({ type: 'add' })
+        }}
+      >
+        add
+      </button>
+      <ul>
+        {list?.map(item => {
+          return (
+            <li key={item.id}>
+              {item.text}
+              <button
+                onClick={() => {
+                  listDispatch({ type: 'edit', id: item.id })
+                }}
+              >
+                edit
+              </button>
+              <button
+                onClick={() => {
+                  listDispatch({ type: 'delete', id: item.id })
+                }}
+              >
+                delete
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+```
+
+
+
+### [useContext](https://react.dev/reference/react/useContext)
+
+就类似`vue`的`provide`和`inject`
+
+```tsx
+import { createContext, useContext } from 'react'
+
+const ThemeContext = createContext(null)
+
+function App() {
+  return (
+    <ThemeContext.Provider value='dark'>
+      <Form />
+    </ThemeContext.Provider>
+  )
+}
+
+function Form() {
+  return (
+    <Panel title='Welcome'>
+      <button>Sign up</button>
+    </Panel>
+  )
+}
+
+function Panel({ title, children }) {
+  const theme = useContext(ThemeContext)
+  const className = 'panel-' + theme
+  return (
+    <section className={className}>
+      <h1>{title}</h1>
+      {children}
+    </section>
+  )
+}
+```
+
+简单的状态管理可以 `Reducer`+`Context`，复杂一点的可以用第三方库
+
+
+
+### [Memo](https://react.dev/reference/react/memo)
+
+在组件的属性保持不变时跳过重新渲染组件
+
+```tsx
+const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
+```
+
+
+
+### [useMemo](https://react.dev/reference/react/useMemo)
+
+在重新渲染之间缓存计算结果，类似于vue中的computed，是一个响应式变量
+
+```tsx
+const cachedValue = useMemo(calculateValue, dependencies)
+```
+
+因为是否重新渲染根据的是`Object.is()`，所以当渲染依据的值是数组的时候，每次渲染都会重新创建变量，内存地址不一样，则结果不同，所以回造成子组件的重新渲染
+
+```tsx
+import { memo, useMemo, useState } from 'react'
+
+const Child = memo(({ title }: { title: string[] }) => {
+  return (
+    <div>
+      {title + ''}
+      <br />
+      {Math.random()}
+    </div>
+  )
+})
+
+function App() {
+  const [count, setCount] = useState(0)
+  const [msg] = useState('hello world')
+  const title = useMemo(() => [msg.toLowerCase(), msg.toUpperCase()], [msg])
+  return (
+    <>
+      <button
+        onClick={() => {
+          setCount(count + 1)
+        }}
+      >
+        {count}++
+      </button>
+      <Child title={title} />
+    </>
+  )
+}
+```
+
+
+
+### [useCallback](https://react.dev/reference/react/useCallback) 缓存函数
+
+> 2024.1.12  https://www.bilibili.com/video/BV13h4y177jW/?p=51&spm_id_from=pageDriver&vd_source=9928f2a9263e4b4f8d78f76eb5a79a03
