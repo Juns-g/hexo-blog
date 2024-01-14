@@ -963,4 +963,53 @@ function App() {
 
 ### [useCallback](https://react.dev/reference/react/useCallback) 缓存函数
 
-> 2024.1.12  https://www.bilibili.com/video/BV13h4y177jW/?p=51&spm_id_from=pageDriver&vd_source=9928f2a9263e4b4f8d78f76eb5a79a03
+相当于是`useMemo`的一种特殊写法
+
+```tsx
+const fn = useMemo(
+  () => () => {
+    console.log(msg)
+  },
+  [msg]
+)
+// 相当于上面那个的简写
+const fn = useCallback(() => {
+  console.log(msg)
+}, [msg])
+```
+
+
+
+### [startTransition](https://react.dev/reference/react/startTransition)
+
+在不阻止UI的情况下更新状态，一般用在非紧急任务
+
+
+
+### [useTransition](https://react.dev/reference/react/useTransition) 和 [useDeferredValue](https://react.dev/reference/react/useDeferredValue)
+
+- `useTransition` 是一个让你在不阻塞 UI 的情况下来更新状态的Hook，返回一个状态值表示过渡任务的等待状态，以及一个启动该过渡任务的函数
+- `useDeferredValue` 接受—个值，并返回该值的新副本，该副本将推迟到更紧急地更新之后
+
+
+
+```tsx
+const [isPending, startTransition] = useTransition()
+
+const [search, setSearch] = useState()
+// 得到的是对应search一样的值，只不过是一个延迟的副本
+const query = useDeferredValue(search)
+// 把这个query放到jsx里面渲染就可以
+```
+
+
+
+### [useId](https://react.dev/reference/react/useId)
+
+生成唯一id，每个地方不一样
+
+
+
+## 结束
+
+之后的是一些antd组件的使用和简单实现，还有hooks的一些库和自己封装，还有其他库的介绍，这里就直接不看了
