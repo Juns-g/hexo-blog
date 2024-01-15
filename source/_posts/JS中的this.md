@@ -1,12 +1,13 @@
 ---
 title: JS中的this
-date: 2024-01-14 15:15:14
 tags:
-  - TS
+  - JS
   - 学习
 cover: 'https://www.doowebs.es/wp-content/uploads/2016/08/javascript-1.png'
 keywords: 学习 前端 JS
 categories: 前端
+abbrlink: 29764
+date: 2024-01-14 15:15:14
 ---
 
 
