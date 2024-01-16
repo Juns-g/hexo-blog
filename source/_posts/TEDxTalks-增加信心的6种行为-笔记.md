@@ -1,12 +1,13 @@
 ---
 title: TEDxTalks 增加信心的6种行为 笔记
-date: 2024-01-15 21:34:05
 tags:
   - TEDxTalks
   - 学习
   - 信心
 categories: 个人思考
 cover: 'https://meditationlifestyle.com/wp-content/uploads/2019/10/ted.jpg'
+abbrlink: 25230
+date: 2024-01-15 21:34:05
 ---
 
 # TEDxTalks 增加信心的6种行为 笔记
