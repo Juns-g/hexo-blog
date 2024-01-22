@@ -7,6 +7,9 @@
   home_essay: true
   top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
+    - content: 推荐一篇理解MVVM的文章
+      date: 2024/1/22
+      link: https://www.liaoxuefeng.com/wiki/1022910821149312/1108898947791072
     - content: 好想躺平😩
       date: 2024/1/19
     - content: 前端瓶子君进阶教程
