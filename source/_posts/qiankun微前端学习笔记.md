@@ -13,6 +13,8 @@ date: 2024-01-22 15:16:49
 
 # qiankun微前端学习笔记
 
+仓库地址: [https://github.com/Juns-g/qiankun-learn](https://github.com/Juns-g/qiankun-learn)
+
 > 参考链接：
 >
 > - [qiankun官网](https://qiankun.umijs.org/zh)
