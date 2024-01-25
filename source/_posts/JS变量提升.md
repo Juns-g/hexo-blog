@@ -5,7 +5,7 @@ tags:
   - 面试
   - 前端
 categories: 面试
-cover: 'https://w.wallhaven.cc/full/3l/wallhaven-3lw5g9.jpg'
+cover: 'https://www.doowebs.es/wp-content/uploads/2016/08/javascript-1.png'
 abbrlink: 27856
 date: 2024-01-23 15:50:17
 ---
