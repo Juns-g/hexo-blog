@@ -2,8 +2,7 @@
 title: Git常用操作
 tags: 学习 Git
 categories: 前端
-cover: >-
-  http://www.kshost.cn/images/github_repo.jpg?imageView2/2/w/1280/format/jpg/interlace/1/q/100
+cover: 'https://pic.imgdb.cn/item/65b3e898871b83018a342092.jpg'
 abbrlink: 39661
 date: 2024-01-26 18:51:44
 ---
