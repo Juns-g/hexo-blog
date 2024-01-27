@@ -1,6 +1,8 @@
 ---
 title: Git常用操作
-tags: 学习 Git
+tags: 
+  - 学习 
+  - Git
 categories: 前端
 cover: 'https://pic.imgdb.cn/item/65b3e898871b83018a342092.jpg'
 abbrlink: 39661

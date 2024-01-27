@@ -7,6 +7,9 @@
   home_essay: true
   top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
+    - content: 推荐一个文章：(建议收藏)原生JS灵魂之问, 请问你能接得住几个？(上)
+      date: 2024/1/27
+      link: https://juejin.cn/post/6844903974378668039
     - content: wow😆做完了这个git学习题
       date: 2024/1/26
       link: https://learngitbranching.js.org/?locale=zh_CN
