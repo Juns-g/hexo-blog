@@ -76,7 +76,7 @@ history.forward() // 前进
 history.go(-2) // 后退2次
 ```
 
-## Vue-Router
+## 基本使用
 
 上面是介绍的路由，现在到了 Vue 的官方路由，他为 Vue 提供了路由配置和导航功能。
 
@@ -132,7 +132,25 @@ const routes = [route1, route2]
 
 #### router
 
-是 VueRouter 的实例对象，全局路由对象，可以通过`this.$router`访问。
+是 VueRouter 的实例对象，全局路由对象，可以通过`this.$router`访问。他也提供了一些方法：
+
+```js
+// 导航守卫
+router.beforeEach((to, from, next) => {
+  /* 必须调用 `next` */
+})
+router.beforeResolve((to, from, next) => {
+  /* 必须调用 `next` */
+})
+router.afterEach((to, from) => {})
+
+动态导航到新路由
+router.push
+router.replace
+router.go
+router.back
+router.forward
+```
 
 ### 动态路由
 
@@ -172,9 +190,9 @@ router.push({ path: '/', params: { p: 1 } }) // 这样等于没有传params，�
 router.push({ name: 'home', params: { p: 1 } }) // 其实也失效了
 ```
 
-在[更新日志](https://github.com/vuejs/router/blob/main/packages/router/CHANGELOG.md#414-2022-08-22)中提到，未声明的params会失效，但是如果我们还是想要实现如同params的效果呢？
+在[更新日志](https://github.com/vuejs/router/blob/main/packages/router/CHANGELOG.md#414-2022-08-22)中提到，未声明的 params 会失效，但是如果我们还是想要实现如同 params 的效果呢？
 
-可以使用上文提到的，history API的功能😆
+可以使用上文提到的，history API 的功能 😆
 
 ```js
 const params = {
@@ -186,10 +204,10 @@ router.push({ name: 'home', state: { params } })
 const historyParams = history.state.params
 ```
 
-#### query传参
+#### query 传参
 
-- 可以用name传参，也可以用path
-- 参数会显示在url上
+- 可以用 name 传参，也可以用 path
+- 参数会显示在 url 上
 - 刷新参数不丢失
 
 ```js
@@ -206,3 +224,114 @@ router.push({
 })
 ```
 
+## [路由守卫](https://router.vuejs.org/zh/guide/advanced/navigation-guards.html)
+
+有些 Web App 需要做鉴权系统，就是某些页面需要一定的权限才可以看，这时候就可以使用路由守卫来实现，如果这个用户没有权限，就返回原本的页面，或者跳转到提示页面。
+
+也可以把路由守卫理解为路由跳转过程中的生命周期函数，具体可以分为：全局路由守卫、路由独享守卫、组件路由守卫
+
+### 全局路由守卫
+
+总共有三个：
+
+- 全局前置守卫：router.beforeEach
+- 全局解析守卫：router.beforeResolve
+- 全局后置钩子：router.afterEach
+
+#### beforeEach(to, from, next?)
+
+接受参数：
+
+- to：要进入的 route
+- from：当前正在离开的路由
+
+一般数据结构如下，和 route 很类似
+
+```js
+const to = {
+  fullPath: '/',
+  path: '/',
+  query: {},
+  hash: '',
+  name: 'home',
+  params: {},
+  matched: [],
+  meta: {},
+  href: '/',
+  redirectedFrom: undefined,
+}
+```
+
+使用如下
+
+```js
+router.beforeEach((to, from) => {
+  console.log('🚀 ~ to:', to)
+  console.log('🚀 ~ from:', from)
+  return true
+})
+```
+
+其中可以 return 的值如下：
+
+- `false`：取消这次路由跳转操作，重置到 from 的路由。
+- 一个路由地址：相当于重定向到另外一个路由。
+- `undefined`或`true`：没有拦截操作，正常跳转。
+
+`beforeEach`还有一个可选参数`next`，在以前的版本是必选的，现在有过改动，当使用它时，我们必须确保`next`只被调用一次。
+
+#### beforeResolve(to, from, next?)
+
+他也是会每次都触发，不过他的调用时机是导航被确认之前、**所有组件内守卫和异步路由组件被解析之后**，也就是 `beforeEach` 和 组件内 `beforeRouteEnter` 之后，`afterEach`之前调用。
+
+#### afterEach(to, from)
+
+一般用于分析、更改标题等
+
+### 路由独享守卫
+
+可以直接在路由的配置上定义`beforeEnter`守卫
+
+```js
+const routes = [
+  { name: 'home', path: '/', component: HelloWorld },
+  {
+    name: 'about',
+    path: '/about',
+    component: AboutPage,
+    beforeEnter: (to, from) => {
+      // ...
+    },
+  },
+]
+```
+
+这个钩子只有在进入路由时触发，不会在 `params`、`query` 或 `hash` 改变时触发。这个属性也可以接受一个函数数组，有利于代码复用。
+
+### 组件路由守卫
+
+- beforeRouteEnter： 在渲染该组件的对应路由被验证前调用
+- beforeRouteUpdate：在当前路由改变，但是该组件被复用时调用
+- beforeRouteLeave：在导航离开渲染该组件的对应路由时调用
+
+vue3 的 setup 中提供了钩子`onBeforeRouteLeave`和`onBeforeRouteUpdate`
+
+### 完整的路由解析流程
+
+1. 导航被触发。
+2. 在失活的组件里调用 `beforeRouteLeave` 守卫。
+3. 调用全局的 `beforeEach` 守卫。
+4. 在重用的组件里调用 `beforeRouteUpdate` 守卫(2.2+)。
+5. 在路由配置里调用 `beforeEnter`。
+6. 解析异步路由组件。
+7. 在被激活的组件里调用 `beforeRouteEnter`。
+8. 调用全局的 `beforeResolve` 守卫(2.5+)。
+9. 导航被确认。
+10. 调用全局的 `afterEach` 钩子。
+11. 触发 DOM 更新。
+12. 调用 `beforeRouteEnter` 守卫中传给 `next` 的回调函数，创建好的组件实例会作为回调函数的参数传入。
+
+## 参考文章
+
+- [史上最全 vue-router 讲解 ！！！](https://juejin.cn/post/7243611408628498491)
+- [Vue Router 官网](https://router.vuejs.org/zh/)
