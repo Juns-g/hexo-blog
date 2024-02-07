@@ -135,6 +135,76 @@ grid:
 
 [css 三栏布局 - 掘金 (juejin.cn)](https://juejin.cn/post/7084911270603784205)
 
+flex:
+
+```html
+<div class="container">
+  <div class="left"></div>
+  <div class="main"></div>
+  <div class="right"></div>
+</div>
+
+<style>
+  .container {
+    width: 100vw;
+    height: 500px;
+    border: red 1px solid;
+    display: flex;
+  }
+  .left {
+    width: 200px;
+    height: 500px;
+    background-color: blue;
+  }
+  .right {
+    width: 200px;
+    height: 500px;
+    background-color: green;
+  }
+  .main {
+    flex: 1;
+    height: 500px;
+    background-color: pink;
+  }
+</style>
+```
+
+grid
+
+```html
+<div class="container">
+  <div class="left"></div>
+  <div class="main"></div>
+  <div class="right"></div>
+</div>
+
+<style>
+  .container {
+    width: 100vw;
+    height: 500px;
+    border: red 1px solid;
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+  }
+  .left {
+    width: 200px;
+    height: 500px;
+    background-color: blue;
+  }
+  .right {
+    width: 200px;
+    height: 500px;
+    background-color: green;
+  }
+  .main {
+    height: 500px;
+    background-color: pink;
+  }
+</style>
+```
+
+
+
 ## BFC
 
 块级格式化上下文
@@ -233,9 +303,9 @@ BFC是一个独立的布局环境，可以理解为一个容器，在这个容�
 
 - 展开是`flex: 1 1 0%;`
 - flext-grow:0 ,flex-shirk:1,flex-basic:0%
-- flex-grow 属性用于设置或检索弹性盒子的扩展比率,默认值0；
-- flex-shrink 属性指定了 flex 元素的收缩规则，默认值1；
-- flex-basis 属性用于设置或检索弹性盒伸缩基准值，默认值auto;
+- `flex-grow`: 规定项目的放大比例，默认值为0，即如果存在剩余空间，也不放大。
+- `flex-shrink`: 规定项目的缩小比例，默认值为1，即如果空间不足，该项目将缩小。
+- `flex-basis`: 规定了在分配多余空间之前，项目占据的主轴空间。设置为0% 表示项目在分配多余空间之前，不占据空间。
 
 ## grid 布局
 

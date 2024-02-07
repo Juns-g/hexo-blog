@@ -10,7 +10,7 @@ abbrlink: 40630
 date: 2023-05-09 16:50:01
 ---
 
-# JS 基
+# JS 基础
 
 ## let，const，var
 
