@@ -152,8 +152,6 @@ obj.fn()
 
 这并不是独立调用，`this`指向`obj`
 
-### 隐式丢失
-
 当函数被多个对象链式调用时，`this`就指向引用函数的那个对象
 
 ```js
@@ -173,6 +171,65 @@ obj2.obj.fn()
 // 1
 // obj
 ```
+
+### 隐式丢失
+
+一个常见的关于 this 的问题就是被隐式丢失
+
+```js
+function fn() {
+  console.log(this.name)
+}
+
+const obj = {
+  name: '111',
+  fn,
+}
+
+const func = obj.fn
+var name = 'windowName'
+func() // windowName
+```
+
+这就是直接独立调用 fn 函数，而不是在 obj 环境中调用了，所以说`this`指向`window`
+
+当然更加常见且容易出错的一种情况是传入回调函数的时候：
+
+```js
+function fn() {
+  console.log(this.name)
+}
+
+function foo(callback) {
+  callback()
+}
+
+const obj = {
+  name: '111',
+  fn,
+}
+
+var name = 'windowName'
+foo(obj.fn) // windowName
+```
+
+这也可以解释，运行 foo 的时候环境是 window，传入的回调函数的环境自然也是 window，这也就造成了`this`指向`window`。由此我们就可以推断出，如果我们吧函数传给语言内置的函数，结果也是一样的了。
+
+```js
+function fn() {
+  console.log(this.name)
+}
+
+const obj = {
+  name: '111',
+  fn,
+}
+
+var name = 'windowName'
+setTimeout(obj.fn, 100) // windowName
+```
+
+而且调用回调函数的那个函数可能会修改 this，所以说这就很容易出问题。
 
 ### 显式绑定
 
@@ -194,6 +251,32 @@ bar()
 // obj
 ```
 
+他们也是硬绑定，在之后不能再修改`this`指向
+
+```js
+function fn() {
+  console.log(this.name)
+}
+
+const obj = {
+  name: '111',
+}
+
+const foo = function () {
+  console.log(this.name)
+  fn.call(obj)
+}
+
+var name = 'windowName'
+
+foo() // windowName 111
+
+foo.call(window) // windowName 111
+foo.call(obj) // 111 111
+
+setTimeout(foo, 100) // windowName 111
+```
+
 ### new 绑定
 
 指向实例对象
@@ -209,9 +292,48 @@ console.log(person1.name) // Alice
 console.log(person1.age) // 25
 ```
 
-### 箭头函数
+## 箭头函数
 
-箭头函数没有自己的`this`
+箭头函数没有自己的`this`，在它内部使用`this`就是定义时上层作用域中的`this`，所以说箭头函数的 this 在定义时就已经确定了。
+
+```js
+var name = 'windowName'
+var person = {
+  name: 'pp',
+  say: () => {
+    console.log(this.name)
+  },
+  say2: function () {
+    console.log(this.name)
+  },
+  say3: function () {
+    console.log(this.name)
+    const fn = () => {
+      console.log(this.name)
+    }
+    fn()
+  },
+}
+
+person.say() // windowName
+let fn = person.say
+fn() // windowName
+
+person.say2() // pp
+let fn2 = person.say2
+fn2() // windowName
+
+person.say3() // pp pp
+let fn3 = person.say3
+fn3() // windowName windowName
+```
+
+## 总结
+
+可以简单理解为，this 指代的是调用这个函数的对象。
+
+- 当直接调用函数时，就是指`globalThis`对象(在浏览器中为 window，在 node 环境中为 global)。
+- 当函数作为对象的方法时，`this`指的就是这个对象。
 
 ## 练习
 
@@ -431,3 +553,4 @@ func()
 > 5. 在全局作用域中 this 代表 window
 
 - [「前端面试题系列 4」this 的原理以及用法](https://juejin.cn/user/3333374985382749/posts)
+- [当前执行上下文 this](https://tsejx.github.io/javascript-guidebook/core-modules/executable-code-and-execution-contexts/execution)
