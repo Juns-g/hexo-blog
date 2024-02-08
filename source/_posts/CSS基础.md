@@ -609,3 +609,172 @@ text-decoration-style:
 - nowrap: 合并空白符，换行符，不换行
 
 #### line-height
+
+可以使用它来做垂直居中，默认是按照 base-line 对齐，可以用`vertical-align: middle`
+
+### 背景
+
+https://tsejx.github.io/css-guidebook/concept/properties/background
+
+### 变换
+
+#### transform
+
+可以旋转、缩放、倾斜、平移元素
+
+部分取值：
+
+- translateX(x): 沿着 x 轴平移
+- translate(x, y): 沿着 x、y 轴平移
+- scale(x, y): 缩放
+- rotateX(angle): 沿着 x 轴旋转
+- rotate(angle): 旋转，需要先定义变形的原点(transform-origin)，然后再旋转
+
+做个例题：用 css3 实现秒针的转动
+
+```html
+<div class="clock">
+  <dv class="second"></dv>
+</div>
+
+<style>
+  .clock {
+    width: 200px;
+    height: 200px;
+    border: blue 1px solid;
+    border-radius: 50%;
+    position: relative;
+  }
+  .second {
+    height: 96px;
+    width: 2px;
+    background-color: black;
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform-origin: 50% 100%;
+    animation: rotateSeconds 60s linear infinite;
+  }
+  @keyframes rotateSeconds {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+```
+
+### 动画
+
+#### animation
+
+就是所有属性的简写，除了 animation-play-state
+
+animation: name duration function delay count direction;
+
+animation: 动画名称 动画时间 运动曲线 何时开始 播放次数 是否反方向;
+
+#### animation-name
+
+就是关键帧的名称，配合@keyframes 一起使用，需要设置运动时间，不然不会播放
+
+```html
+<div class="box"></div>
+<style>
+  .box {
+    height: 100px;
+    width: 100px;
+    background-color: blue;
+    animation-name: move;
+    animation-duration: 4s;
+    position: absolute;
+  }
+  @keyframes move {
+    from {
+      left: 0px;
+    }
+    to {
+      left: 200px;
+    }
+  }
+</style>
+```
+
+#### animation-duration
+
+动画持续时间，6s、0.5s、3ms
+
+#### animation-timing-function
+
+速度曲线，默认 ease
+
+- linear: 匀速
+- ease: 慢-快-慢
+- ease-in: 慢-快
+- ease-out: 快-慢
+- ease-in-out: 很慢-慢-快-慢-很慢
+- cubic-bezier(n,n,n,n): 自定义速度曲线
+
+#### animation-delay
+
+延迟时间，默认 0。可以为负数，-2s 让动画立刻开始，但是跳过 2s。
+
+#### animation-iteration-count
+
+动画播放次数，默认 1，可以设置为 infinite 无限循环
+
+#### animation-direction
+
+是否反方向播放，默认 normal
+
+#### animation-play-state
+
+可以用来控制播放动画的状态，暂停 paused，继续 running
+
+### 过渡
+
+可以把元素的样式从一种变换为另一种
+
+## 规则
+
+### @font-face 自定义字体
+
+### @import 样式导入
+
+一定要先于除了`@charset`之外的所有规则
+
+```css
+@import './style.css';
+@import url('style.css');
+```
+
+### @keyframes 关键帧
+
+指定动画名称和效果
+
+```css
+@keyframes move {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 200px;
+  }
+}
+
+@keyframes move2 {
+  0% {
+    left: 0px;
+  }
+  50% {
+    left: 100px;
+  }
+  100% {
+    left: 200px;
+  }
+}
+```
+
+### @media 媒体查询
