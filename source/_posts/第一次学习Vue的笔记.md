@@ -95,19 +95,19 @@ $ pnpm dev
 new Proxy(data, {
   // 拦截读取属性值
   get(target, prop) {
-    return Reflect.get(target, prop);
+    return Reflect.get(target, prop)
   },
   // 拦截设置属性值或添加新属性
   set(target, prop, value) {
-    return Reflect.set(target, prop, value);
+    return Reflect.set(target, prop, value)
   },
   // 拦截删除属性
   deleteProperty(target, prop) {
-    return Reflect.deleteProperty(target, prop);
+    return Reflect.deleteProperty(target, prop)
   },
-});
+})
 
-proxy.name = "tom";
+proxy.name = 'tom'
 ```
 
 #### Vue2 的响应式
@@ -119,10 +119,10 @@ proxy.name = "tom";
   - 数组类型：通过重写更新数组的一系列方法来实现拦截。（对数组的变更方法进行了包裹）。
 
     ```js
-    Object.defineProperty(data, "count", {
+    Object.defineProperty(data, 'count', {
       get() {},
       set() {},
-    });
+    })
     ```
 
 - 存在问题：
@@ -149,7 +149,7 @@ proxy.name = "tom";
 > let data = reactive({
 >   person: {},
 >   student: {},
-> });
+> })
 > ```
 
 ### setup 的两个注意点
@@ -172,14 +172,14 @@ proxy.name = "tom";
 - 写法，但是 name1 和 name2 中间的空格删掉的话会出 bug
 
   ```js
-  import { reactive, computed } from "vue";
+  import { reactive, computed } from 'vue'
   export default {
-    name: "Demo",
+    name: 'Demo',
     setup() {
       let person = reactive({
-        name1: "张",
-        name2: "三",
-      });
+        name1: '张',
+        name2: '三',
+      })
       // 简写，不考虑计算属性被修改的情况
       /* person.fullName = computed(() => {
         return person.name1 + " " + person.name2;
@@ -188,19 +188,19 @@ proxy.name = "tom";
       //完整写法，考虑读写
       person.fullName = computed({
         get() {
-          return person.name1 + " " + person.name2;
+          return person.name1 + ' ' + person.name2
         },
         set(value) {
-          const nameArr = value.split(" ");
-          person.name1 = nameArr[0];
-          person.name2 = nameArr[1];
+          const nameArr = value.split(' ')
+          person.name1 = nameArr[0]
+          person.name2 = nameArr[1]
         },
-      });
+      })
       return {
         person,
-      };
+      }
     },
-  };
+  }
   ```
 
 #### 2.watch 函数
@@ -221,19 +221,19 @@ proxy.name = "tom";
   watch(
     sum,
     (newValue, oldValue) => {
-      console.log(newValue, oldValue);
+      console.log(newValue, oldValue)
     },
     { immediate: true }
-  );
+  )
 
   // 2. 监视ref定义的多个响应式数据
   watch(
     [sum, msg],
     (newValue, oldValue) => {
-      console.log(newValue, oldValue);
+      console.log(newValue, oldValue)
     },
     { immediate: true } // 刚出现也执行watch
-  );
+  )
 
   // 3. 监视reactive定义的一个响应式数据的全部属性
   // ! 此处无法获取正确的oldValue，新旧一样的
@@ -241,33 +241,33 @@ proxy.name = "tom";
   watch(
     person,
     (newValue, oldValue) => {
-      console.log(newValue, oldValue);
+      console.log(newValue, oldValue)
     },
     { deep: false } // 此处deep配置无效
-  );
+  )
 
   // 4. 监视reacive定义的一个响应式数据中的一个属性
   watch(
     () => person.age,
     (newValue, oldValue) => {
-      console.log(newValue, oldValue);
+      console.log(newValue, oldValue)
     }
-  );
+  )
 
   // 5. 监视reacivee定义的一个响应式数据中的某些属性
   // ! 能监听到旧数据了
   watch([() => person.name, () => person.age], (newValue, oldValue) => {
-    console.log(newValue, oldValue);
-  });
+    console.log(newValue, oldValue)
+  })
 
   // 特殊情况
   watch(
     () => person.job,
     (newValue, oldValue) => {
-      console.log(newValue, oldValue);
+      console.log(newValue, oldValue)
     },
     { deep: true } // 监听深层属性，需要开启deep
-  );
+  )
   ```
 
 #### 3. watchEffect 函数
@@ -284,10 +284,10 @@ proxy.name = "tom";
   ```js
   // watchEffect里面的数据只要变化了就会执行
   watchEffect(() => {
-    const x1 = sum.value;
-    const x2 = person.job.j1.salary;
-    console.log(x1, x2);
-  });
+    const x1 = sum.value
+    const x2 = person.job.j1.salary
+    console.log(x1, x2)
+  })
   ```
 
 ### 生命周期
@@ -301,7 +301,7 @@ proxy.name = "tom";
 
   ```js
   export default {
-    name: "App",
+    name: 'App',
     components: {
       Demo,
     },
@@ -314,7 +314,7 @@ proxy.name = "tom";
     updated() {},
     beforeUnmount() {},
     unmounted() {},
-  };
+  }
   ```
 
   - 但是写在外面访问 setup 里面的数据会很麻烦
@@ -341,46 +341,46 @@ proxy.name = "tom";
 - usePoint.js
 
 - ```js
-  import { reactive, onMounted, onBeforeUnmount } from "vue";
+  import { reactive, onMounted, onBeforeUnmount } from 'vue'
   export default function () {
     let p = reactive({
       x: 0,
       y: 0,
-    });
+    })
 
     function savePoint(e) {
-      console.log(e.pageX, e.pageY);
-      p.x = e.pageX;
-      p.y = e.pageY;
+      console.log(e.pageX, e.pageY)
+      p.x = e.pageX
+      p.y = e.pageY
     }
 
     onMounted(() => {
-      window.addEventListener("click", savePoint);
-    });
+      window.addEventListener('click', savePoint)
+    })
 
     onBeforeUnmount(() => {
-      window.removeEventListener("click", savePoint);
-    });
-    return p;
+      window.removeEventListener('click', savePoint)
+    })
+    return p
   }
   ```
 
 - Demo.vue
 
 - ```js
-  import { ref } from "vue";
-  import usePoint from "../hooks/usePoint";
+  import { ref } from 'vue'
+  import usePoint from '../hooks/usePoint'
   export default {
-    name: "Demo",
+    name: 'Demo',
     setup() {
-      let sum = ref(0);
-      let p = usePoint();
+      let sum = ref(0)
+      let p = usePoint()
       return {
         sum,
         p,
-      };
+      }
     },
-  };
+  }
   ```
 
 ### toRef
@@ -394,9 +394,9 @@ proxy.name = "tom";
 return {
   /* name: toRef(p, "name"),
     age: toRef(p, "age"),*/
-  salary: toRef(p.job.j1, "salary"),
+  salary: toRef(p.job.j1, 'salary'),
   ...toRefs(p), // 这是展开
-};
+}
 ```
 
 ```vue
@@ -460,36 +460,36 @@ return {
 
   <script>
   // eslint-disable-next-line no-unused-vars
-  import { customRef } from "vue";
+  import { customRef } from 'vue'
   export default {
     // eslint-disable-next-line vue/multi-word-component-names
-    name: "Demo",
+    name: 'Demo',
     setup() {
       // 自定义的myRef，里面的配置需要自己完善
       function myRef(value, delay) {
-        let timer;
+        let timer
         // 通过customRef来自定义
         return customRef((track, trigger) => {
           return {
             get() {
-              track(); // 告诉Vue这个value值需要追踪
-              return value;
+              track() // 告诉Vue这个value值需要追踪
+              return value
             },
             set(newValue) {
-              clearTimeout(timer);
+              clearTimeout(timer)
               timer = setTimeout(() => {
-                value = newValue;
-                trigger(); //告诉Vue去更新界面
-              }, delay);
+                value = newValue
+                trigger() //告诉Vue去更新界面
+              }, delay)
             },
-          };
-        });
+          }
+        })
       }
       // 使用自定义的ref
-      let keyword = myRef("hello", 200);
-      return { keyword };
+      let keyword = myRef('hello', 200)
+      return { keyword }
     },
-  };
+  }
   </script>
   ```
 
@@ -519,14 +519,14 @@ return {
   2.  后代组件中：
 
       ```js
-      import { inject } from "vue";
+      import { inject } from 'vue'
       export default {
-        name: "Son",
+        name: 'Son',
         setup() {
-          let car = inject("car");
-          return { car };
+          let car = inject('car')
+          return { car }
         },
-      };
+      }
       ```
 
 ### 6.响应式数据的判断
@@ -590,16 +590,16 @@ return {
   </template>
 
   <script>
-  import { ref } from "vue";
+  import { ref } from 'vue'
 
   export default {
-    name: "Dialog",
+    name: 'Dialog',
     setup() {
-      let isShow = ref(false);
+      let isShow = ref(false)
 
-      return { isShow };
+      return { isShow }
     },
-  };
+  }
   </script>
 
   <style scoped>
@@ -637,8 +637,8 @@ return {
   - 异步引入组件
 
     ```js
-    import { defineAsyncComponent } from "vue";
-    const Child = defineAsyncComponent(() => import("./components/Child.vue"));
+    import { defineAsyncComponent } from 'vue'
+    const Child = defineAsyncComponent(() => import('./components/Child.vue'))
     ```
 
   - 使用`Suspense`包裹组件，并配置好`default` 与 `fallback`
@@ -710,8 +710,8 @@ return {
     ```vue
     <script>
     export default {
-      emits: ["close"],
-    };
+      emits: ['close'],
+    }
     </script>
     ```
 

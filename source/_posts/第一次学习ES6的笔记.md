@@ -30,17 +30,17 @@ date: 2023-05-18 19:48:45
 - 变量不能重复声明
 
   ```js
-  let star = "罗志祥";
-  let star = "小猪"; //error
+  let star = '罗志祥'
+  let star = '小猪' //error
   ```
 
 - let 有块级作用域
 
   ```js
   {
-    let girl = "周扬青";
+    let girl = '周扬青'
   }
-  console.log(girl); //error
+  console.log(girl) //error
   ```
 
   不仅仅针对花括号，例如 if（）里面
@@ -48,16 +48,16 @@ date: 2023-05-18 19:48:45
 - 不存在变量提前
 
   ```js
-  console.log(song); //error
-  let song = "恋爱达人";
+  console.log(song) //error
+  let song = '恋爱达人'
   ```
 
 - 不影响作用域链
 
   ```js
-  let school = "abc";
+  let school = 'abc'
   function fn() {
-    console.log(school); //abc
+    console.log(school) //abc
   }
   ```
 
@@ -68,7 +68,7 @@ date: 2023-05-18 19:48:45
 - 声明常量
 
   ```js
-  const A = "abc";
+  const A = 'abc'
   ```
 
   1.  一定要赋初始值
@@ -81,16 +81,16 @@ date: 2023-05-18 19:48:45
 
       ```js
       {
-        const pyaler = "uzi";
+        const pyaler = 'uzi'
       }
-      console.log(player); //error
+      console.log(player) //error
       ```
 
   5.  对于数组和对象的元素修改，不算作对常量的修改
 
       ```js
-      const team = ["uzi", "MXLG", "Ming", "Letme"];
-      team.push("Meiko"); //不报错，常量地址没有发生变化
+      const team = ['uzi', 'MXLG', 'Ming', 'Letme']
+      team.push('Meiko') //不报错，常量地址没有发生变化
       ```
 
 ### 解构赋值
@@ -130,13 +130,13 @@ ES6 允许按照一定模式从数组和对象中提取值，对变量进行赋�
 
 > 特性
 
-ES6 引入的==``==，之前是==' '==和==" "==
+ES6 引入的` `` `，之前是`' '`和`" "`
 
 1. 声明
 
    ```js
-   let str = `我也是一个字符串`;
-   console.log(str, typeof str);
+   let str = `我也是一个字符串`
+   console.log(str, typeof str)
    ```
 
 2. 内容中可以直接出现换行符
@@ -151,9 +151,9 @@ ES6 引入的==``==，之前是==' '==和==" "==
 3. 变量拼接
 
    ```js
-   let lovest = "RHF";
-   let out = `${lovest}是最帅的`;
-   console.log(out); //RHF是最帅的
+   let lovest = 'RHF'
+   let out = `${lovest}是最帅的`
+   console.log(out) //RHF是最帅的
    ```
 
 ### 对象的简化写法
@@ -165,30 +165,30 @@ ES6 允许在大括号里面，直接写入变量和函数，作为对象的属�
 > 特性
 
 ```js
-let name = "aaa";
+let name = 'aaa'
 let change = function () {
-  console.log("aaa");
-};
+  console.log('aaa')
+}
 
 const school = {
   name,
   change,
   improve() {
-    consolg.log("bbb");
+    consolg.log('bbb')
   },
-};
+}
 ```
 
 ### 箭头函数
 
 > 介绍
 
-ES6 允许使用箭头（===>==）定义函数
+ES6 允许使用箭头（=>）定义函数
 
 ```js
-let fn = function () {};
+let fn = function () {}
 
-let fn = () => {};
+let fn = () => {}
 ```
 
 > 特性
@@ -197,25 +197,25 @@ let fn = () => {};
 
    ```js
    function A() {
-     console.log(this.name);
+     console.log(this.name)
    }
 
    let B = () => {
-     console.log(this.name);
-   };
+     console.log(this.name)
+   }
 
-   window.name = "尚硅谷";
+   window.name = '尚硅谷'
    const school = {
-     name: "ATGUIGU",
-   };
+     name: 'ATGUIGU',
+   }
 
    //直接调用
-   A(); //尚硅谷
-   B(); //尚硅谷
+   A() //尚硅谷
+   B() //尚硅谷
 
    //call
-   A.call(school); //ATGUIGU
-   B.cal(school); //尚硅谷
+   A.call(school) //ATGUIGU
+   B.cal(school) //尚硅谷
    ```
 
 2. 不能作为构造实例化对象
@@ -243,15 +243,15 @@ let fn = () => {};
    - 省略小括号，当形参有且只有一个的时候
 
      ```js
-     let add = (n) => {
-       return n + 1;
-     };
+     let add = n => {
+       return n + 1
+     }
      ```
 
    - 省略花括号，当代码体只有一条语句的时候，此时 return 也必须省略
 
      ```js
-     let add = (n) => n + 1;
+     let add = n => n + 1
      ```
 
 ### 函数参数默认值
@@ -266,23 +266,23 @@ ES6 允许给函数参数赋值初始值
 
    ```js
    function add(a, b, c = 12) {
-     return a + b + c;
+     return a + b + c
    }
-   let result = add(1, 2);
-   console.log(result); // 15
+   let result = add(1, 2)
+   console.log(result) // 15
    ```
 
 2. 与解构赋值结合
 
    ```js
-   function A({ host = "127.0.0.1", username, password, port }) {
-     console.log(host + username + password + port);
+   function A({ host = '127.0.0.1', username, password, port }) {
+     console.log(host + username + password + port)
    }
    A({
-     username: "ran",
-     password: "123456",
+     username: 'ran',
+     password: '123456',
      port: 3306,
-   });
+   })
    ```
 
 ### rest 参数
@@ -324,11 +324,11 @@ fn(1,2,3,4,5,6)
 > 特性
 
 ```js
-const tfboys = ["AA", "BB", "CC"];
+const tfboys = ['AA', 'BB', 'CC']
 function chunwan() {
-  console.log(arguments);
+  console.log(arguments)
 }
-chunwan(...tfboys); //0:'AA' 1:'BB' 2:'CC'
+chunwan(...tfboys) //0:'AA' 1:'BB' 2:'CC'
 ```
 
 > 应用
@@ -336,26 +336,26 @@ chunwan(...tfboys); //0:'AA' 1:'BB' 2:'CC'
 1. 数组的合并
 
    ```js
-   const A = ["aa", "bb"];
-   const B = ["cc", "dd"];
-   const C = [...A, ...B];
-   console.log(C); //[aa,bb,cc,dd]
+   const A = ['aa', 'bb']
+   const B = ['cc', 'dd']
+   const C = [...A, ...B]
+   console.log(C) //[aa,bb,cc,dd]
    ```
 
 2. 数组的克隆
 
    ```js
-   const A = ["a", "b", "c"];
-   const B = [...A];
-   console.log(B); //[a,b,c]
+   const A = ['a', 'b', 'c']
+   const B = [...A]
+   console.log(B) //[a,b,c]
    ```
 
 3. 将伪数组转换为真正的数组
 
    ```js
-   const A = documents.querySelectorAll("div");
-   const B = [...A];
-   console.log(B); // [div,div,div]
+   const A = documents.querySelectorAll('div')
+   const B = [...A]
+   console.log(B) // [div,div,div]
    ```
 
 ### Symbol
@@ -375,22 +375,22 @@ Symbol 特点：
 1. 创建
 
    ```js
-   let s = Symbol("aa");
-   let s2 = Symbol("aa"); // 字符串只是标志，返回结果不一样
-   console.log(s === s2); //false
+   let s = Symbol('aa')
+   let s2 = Symbol('aa') // 字符串只是标志，返回结果不一样
+   console.log(s === s2) //false
 
    // 也是创建
-   let s3 = Symbol.for("bb");
-   let s4 = Symbol.for("bb");
-   comsole.log(s3 === s4); ///true
+   let s3 = Symbol.for('bb')
+   let s4 = Symbol.for('bb')
+   comsole.log(s3 === s4) ///true
    ```
 
 2. 不能与其他数据进行运算
 
    ```js
-   let result = s + 100; //error
-   let result = s > 100; //error
-   let result = s + s; //error
+   let result = s + 100 //error
+   let result = s > 100 //error
+   let result = s + s //error
    ```
 
 3. Symbol 内置值
@@ -450,41 +450,41 @@ Symbol 特点：
 > 特性
 
 ```js
-const xiyou = ["AA", "BB", "CC", "DD"];
+const xiyou = ['AA', 'BB', 'CC', 'DD']
 // for(let v of xiyou){
 //     console.log(v)  // 'AA','BB','CC','DD'  //for in保存的是键名，for of保存的是键值
 // }
-let iterator = xiyou[Symbol.iterator]();
-console.log(iterator.next()); //{{value:'唐僧'，done:false}}
-console.log(iterator.next()); //{{value:'孙悟空'，done:false}}
+let iterator = xiyou[Symbol.iterator]()
+console.log(iterator.next()) //{{value:'唐僧'，done:false}}
+console.log(iterator.next()) //{{value:'孙悟空'，done:false}}
 ```
 
 > 应用
 
 ```js
 const banji = {
-  name: "终极一班",
-  stus: ["aa", "bb", "cc", "dd"],
+  name: '终极一班',
+  stus: ['aa', 'bb', 'cc', 'dd'],
   [Symbol.iterator]() {
-    let index = 0;
-    let _this = this;
+    let index = 0
+    let _this = this
     return {
       next: () => {
         if (index < this.stus.length) {
-          const result = { value: _this.stus[index], done: false };
+          const result = { value: _this.stus[index], done: false }
           //下标自增
-          index++;
+          index++
           //返回结果
-          return result;
+          return result
         } else {
-          return { value: underfined, done: true };
+          return { value: underfined, done: true }
         }
       },
-    };
+    }
   },
-};
+}
 for (let v of banji) {
-  console.log(v); // aa bb cc dd
+  console.log(v) // aa bb cc dd
 }
 ```
 
@@ -515,20 +515,20 @@ console.log(iteretor.next()); //{value:'真奇怪',done:false}
 
    ```js
    function* gen(args) {
-     console.log(args);
-     let one = yield 111;
-     console.log(one);
-     let two = yield 222;
-     console.log(two);
-     let three = yield 333;
-     console.log(three);
+     console.log(args)
+     let one = yield 111
+     console.log(one)
+     let two = yield 222
+     console.log(two)
+     let three = yield 333
+     console.log(three)
    }
 
-   let iterator = gen("AAA");
-   console.log(iterator.next());
-   console.log(iterator.next("BBB")); //next中传入的BBB将作为yield 111的返回结果
-   console.log(iterator.next("CCC")); //next中传入的CCC将作为yield 222的返回结果
-   console.log(iterator.next("DDD")); //next中传入的DDD将作为yield 333的返回结果
+   let iterator = gen('AAA')
+   console.log(iterator.next())
+   console.log(iterator.next('BBB')) //next中传入的BBB将作为yield 111的返回结果
+   console.log(iterator.next('CCC')) //next中传入的CCC将作为yield 222的返回结果
+   console.log(iterator.next('DDD')) //next中传入的DDD将作为yield 333的返回结果
    ```
 
 2. 实例 1：用生成器函数的方式解决回调地狱问题
@@ -536,31 +536,31 @@ console.log(iteretor.next()); //{value:'真奇怪',done:false}
    ```js
    function one() {
      setTimeout(() => {
-       console.log("111");
-       iterator.next();
-     }, 1000);
+       console.log('111')
+       iterator.next()
+     }, 1000)
    }
    function two() {
      setTimeout(() => {
-       console.log("222");
-       iterator.next();
-     }, 2000);
+       console.log('222')
+       iterator.next()
+     }, 2000)
    }
    function three() {
      setTimeout(() => {
-       console.log("333");
-       iterator.next();
-     }, 3000);
+       console.log('333')
+       iterator.next()
+     }, 3000)
    }
 
    function* gen() {
-     yield one();
-     yield two();
-     yield three();
+     yield one()
+     yield two()
+     yield three()
    }
 
-   let iterator = gen();
-   iterator.next();
+   let iterator = gen()
+   iterator.next()
    ```
 
 3. 实例 2：模拟异步获取数据
@@ -568,34 +568,34 @@ console.log(iteretor.next()); //{value:'真奇怪',done:false}
    ```js
    function one() {
      setTimeout(() => {
-       let data = "用户数据";
-       iterator.next(data);
-     }, 1000);
+       let data = '用户数据'
+       iterator.next(data)
+     }, 1000)
    }
    function two() {
      setTimeout(() => {
-       let data = "订单数据";
-       iterator.next(data);
-     }, 2000);
+       let data = '订单数据'
+       iterator.next(data)
+     }, 2000)
    }
    function three() {
      setTimeout(() => {
-       let data = "商品数据";
-       iterator.next(data);
-     }, 3000);
+       let data = '商品数据'
+       iterator.next(data)
+     }, 3000)
    }
 
    function* gen() {
-     let users = yield one();
-     console.log(users);
-     let orders = yield two();
-     console.log(orders);
-     let goods = yield three();
-     console.log(goods);
+     let users = yield one()
+     console.log(users)
+     let orders = yield two()
+     console.log(orders)
+     let goods = yield three()
+     console.log(goods)
    }
 
-   let iterator = gen();
-   iterator.next();
+   let iterator = gen()
+   iterator.next()
    ```
 
 ### Promise
@@ -612,9 +612,9 @@ Promise 是 ES6 引入的异步编程的新解决方案。语法上 Promise 是�
    <script>
      const p =new Promise((resolve, reject)=>
      {setTimeout(() => {
-       let data = "数据库数据";
+       let data = '数据库数据'
        // resolve(data);
-       reject(data);
+       reject(data)
      })}) p.then(function (value)
      {
        //成功则执行第一个回调函数，失败则执行第二个
@@ -659,9 +659,9 @@ Promise 是 ES6 引入的异步编程的新解决方案。语法上 Promise 是�
    ```js
    //catch（）函数只有一个回调函数，意味着如果Promise对象状态为失败就会调用catch（）方法并且调用回调函数
    <script>
-     const p = new Promise((resolve, reject) =>{" "}
+     const p = new Promise((resolve, reject) =>{' '}
      {setTimeout(() => {
-       reject("出错啦");
+       reject('出错啦')
      }, 1000)}
      ) p.catch(reason => {console.log(reason)})
    </script>
@@ -789,12 +789,12 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 >
 > ```javascript
 > let myMap1 = new Map([
->   [1, "one"],
->   [2, "two"],
->   [3, "three"],
->   [1, "four"],
-> ]);
-> let myMap2 = new Map();
+>   [1, 'one'],
+>   [2, 'two'],
+>   [3, 'three'],
+>   [1, 'four'],
+> ])
+> let myMap2 = new Map()
 > ```
 >
 > ### size 属性
@@ -802,8 +802,8 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 获取元素个数 由于 map 的 key 不能相同，相同则会取后面的那个，所以 myMap1 的 size 为 3
 >
 > ```javascript
-> console.log(myMap1.size); //3
-> console.log(myMap2.size); //0
+> console.log(myMap1.size) //3
+> console.log(myMap2.size) //0
 > ```
 >
 > ### get 方法
@@ -811,7 +811,7 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 获取 value
 >
 > ```javascript
-> console.log(myMap1.get(1)); // four
+> console.log(myMap1.get(1)) // four
 > ```
 >
 > ### has 方法
@@ -819,7 +819,7 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 判断是否有对应的 key
 >
 > ```javascript
-> console.log(myMap1.has(1)); // true
+> console.log(myMap1.has(1)) // true
 > ```
 >
 > ### keys
@@ -827,9 +827,9 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 返回按照顺序插入的每个元素的 key 值
 >
 > ```javascript
-> let test = myMap1.keys();
+> let test = myMap1.keys()
 > for (let key of test) {
->   console.log(key);
+>   console.log(key)
 > }
 > ```
 >
@@ -838,9 +838,9 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 返回按照顺序插入的每个元素的 value 值得迭代器对象
 >
 > ```javascript
-> let test2 = myMap1.values();
+> let test2 = myMap1.values()
 > for (let value of test2) {
->   console.log(value);
+>   console.log(value)
 > }
 > //  four two three
 > //注意上面的打印顺序，可以看到构造方法里先出现的key在迭代对象里也先出现，而不是有重复的话先删除再添加，而是重复的话直接覆盖对应的value
@@ -851,7 +851,7 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 往 map 里插入或者覆盖对应的 key 和 value
 >
 > ```javascript
-> myMap2.set(6, 6);
+> myMap2.set(6, 6)
 > ```
 >
 > ### entries 方法
@@ -859,9 +859,9 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 返回包含[key,value]的迭代器对象
 >
 > ```javascript
-> const iterator1 = myMap1.entries();
+> const iterator1 = myMap1.entries()
 > for (const item of iterator1) {
->   console.log(typeof item, Array.isArray(item), item);
+>   console.log(typeof item, Array.isArray(item), item)
 > }
 > ```
 >
@@ -870,10 +870,10 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 删除对应的 key 同时返回删除之前是否包含该元素
 >
 > ```javascript
-> const map1 = new Map();
-> map1.set("bar", "foo");
+> const map1 = new Map()
+> map1.set('bar', 'foo')
 >
-> console.log(map1.delete("bar"));
+> console.log(map1.delete('bar'))
 > // expected result: true
 > ```
 >
@@ -882,7 +882,7 @@ ES6 提供了 Map 数据结构。它类似于对象，也是键值对的集合�
 > - 清空 map 对象
 >
 > ```javascript
-> myMap1.clear();
+> myMap1.clear()
 > ```
 
 ### Class
@@ -1181,9 +1181,9 @@ export function teach(){
 
    ```js
    //统一暴露
-   let school = "尚硅谷";
+   let school = '尚硅谷'
    function findjob() {
-     console.log("找工作吧");
+     console.log('找工作吧')
    }
    //export {school,findjob}
    ```
@@ -1193,11 +1193,11 @@ export function teach(){
    ```js
    //默认暴露
    export default {
-     school: "ATGUIGU",
+     school: 'ATGUIGU',
      change: function () {
-       console.log("我们可以改变你");
+       console.log('我们可以改变你')
      },
-   };
+   }
    ```
 
 #### 引入语法汇总
@@ -1205,17 +1205,17 @@ export function teach(){
 1. 通用导入方式
 
    ```js
-   import * as m1 from "./src/js/m1.js";
-   import * as m2 from "./src/js/m2.js";
-   import * as m3 from "./src/js/m3.js";
+   import * as m1 from './src/js/m1.js'
+   import * as m2 from './src/js/m2.js'
+   import * as m3 from './src/js/m3.js'
    ```
 
 2. 解构赋值方式
 
    ```js
-   import { school, teach } from "./src/js/m1.js";
-   import { school as guigu, findJob } from "./src/js/m2.js";
-   import { default as m3 } from "./src/js/m3.js";
+   import { school, teach } from './src/js/m1.js'
+   import { school as guigu, findJob } from './src/js/m2.js'
+   import { default as m3 } from './src/js/m3.js'
    ```
 
 3. 简便形式（只针对默认暴露）
@@ -1263,18 +1263,18 @@ async function fn() {
   //2.如果返回的是一个Promise对象，则fn（）返回的结果与内部Promise对象的结果一致
   //3.如果返回的是抛出错误，则fn（）返回的就是失败状态的Promise对象
   return new Promise((resolve, reject) => {
-    resolve("成功的数据");
-  });
+    resolve('成功的数据')
+  })
 }
-const result = fn();
+const result = fn()
 result.then(
-  (value) => {
-    console.log(value); //成功的数据
+  value => {
+    console.log(value) //成功的数据
   },
-  (reason) => {
-    console.log(reason);
+  reason => {
+    console.log(reason)
   }
-);
+)
 ```
 
 ### await 表达式
@@ -1395,31 +1395,31 @@ result.then(
 ```html
 <script>
   function connect({ host, port, ...user }) {
-    console.log(host);
-    console.log(port);
-    console.log(user);
+    console.log(host)
+    console.log(port)
+    console.log(user)
   }
   connect({
-    host: "127.0.0.1",
+    host: '127.0.0.1',
     port: 3306,
-    username: "root",
-    password: "root",
-    type: "master",
-  }); //127.0.0.1  3306  {username: "root", password: "root", type: "master"}
+    username: 'root',
+    password: 'root',
+    type: 'master',
+  }) //127.0.0.1  3306  {username: "root", password: "root", type: "master"}
 </script>
 
 <script>
   const AA = {
-    username: "ran",
-  };
+    username: 'ran',
+  }
   const BB = {
-    password: "lyyrhf",
-  };
+    password: 'lyyrhf',
+  }
   const CC = {
-    job: "Java",
-  };
-  const D = { ...AA, ...BB, ...CC };
-  console.log(D); //{username: "ran", password: "lyyrhf", job: "Java"}
+    job: 'Java',
+  }
+  const D = { ...AA, ...BB, ...CC }
+  console.log(D) //{username: "ran", password: "lyyrhf", job: "Java"}
 </script>
 ```
 
@@ -1431,16 +1431,16 @@ result.then(
 <script>
   //二维数组
   const res = Object.fromEntries([
-    ["name", "RHF"],
-    ["cities", "成都", "武汉"],
-  ]);
-  console.log(res); //{name: "RHF", cities: "成都"}
+    ['name', 'RHF'],
+    ['cities', '成都', '武汉'],
+  ])
+  console.log(res) //{name: "RHF", cities: "成都"}
 
   //Map
-  const m = new Map();
-  m.set("name", "ranhaifeng");
-  const result = Object.fromEntries(m);
-  console.log(result); //{name: "ranhaifeng"}
+  const m = new Map()
+  m.set('name', 'ranhaifeng')
+  const result = Object.fromEntries(m)
+  console.log(result) //{name: "ranhaifeng"}
 </script>
 ```
 
@@ -1473,8 +1473,8 @@ result.then(
 > 实例
 
 ```js
-let s = Symbol("尚硅谷");
-console.log(s.description); //尚硅谷
+let s = Symbol('尚硅谷')
+console.log(s.description) //尚硅谷
 ```
 
 ### 私有属性
@@ -1568,10 +1568,10 @@ main({
 ```js
 btn.onclick = function () {
   //使用之前并未引入，动态引入，返回的其实是一个Promise对象
-  import("./hello.js").then((module) => {
-    module.hello();
-  });
-};
+  import('./hello.js').then(module => {
+    module.hello()
+  })
+}
 ```
 
 ### BigInt 类型
@@ -1595,6 +1595,8 @@ console.log(BigInt(max)+BigInt(2)) 9007199254740993n
 
 ### 绝对全局对象 globalThis
 
+> 浏览器为 window， node 中为 global
+
 ```js
-console.log(globalThis); //window  //适用于复杂环境下直接操作window
+console.log(globalThis) //window  //适用于复杂环境下直接操作window
 ```
