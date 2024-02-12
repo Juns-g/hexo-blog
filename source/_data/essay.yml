@@ -7,6 +7,9 @@
   home_essay: true
   top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
+    - content: 还真的尝试手写出了一小部分的 Vue 😆
+      date: 2024/2/12
+      link: https://juns-g.github.io/posts/40037
     - content: 文章推荐：三大微前端框架，谁是你的理想型？
       date: 2024/1/31
       link: https://juejin.cn/post/7309477710523269174
