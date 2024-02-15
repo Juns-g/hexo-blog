@@ -5,18 +5,16 @@ tags:
   - 面试
   - 前端
 categories: 面试
-cover: 'https://www.doowebs.es/wp-content/uploads/2016/08/javascript-1.png'
+cover: 'https://pic.imgdb.cn/item/65cdd6cf9f345e8d032f5627.jpg'
 abbrlink: 27856
 date: 2024-01-23 15:50:17
 ---
 
-# JS变量提升
+# JS 变量提升
 
 > 参考链接：
 >
-> - [彻底解决 JS 变量提升| 一题一图，超详细包教包会😉](https://juejin.cn/post/6933377315573497864)
-
-
+> - [彻底解决 JS 变量提升| 一题一图，超详细包教包会 😉](https://juejin.cn/post/6933377315573497864)
 
 ## 什么是变量提升？
 
@@ -27,7 +25,7 @@ console.log(a) // undefined
 var a = 10
 ```
 
-为什么打印的是undefined呢？就是由于js的变量提升机制，代码执行前，浏览器会将带有`var`, `function`关键词的变量提前进行声明（默认值就是undefined）。在变量提升解读啊，带`var`的只是声明还没有被定义，带`function`的已经声明和定义。
+为什么打印的是 undefined 呢？就是由于 js 的变量提升机制，代码执行前，浏览器会将带有`var`, `function`关键词的变量提前进行声明（默认值就是 undefined）。在变量提升解读啊，带`var`的只是声明还没有被定义，带`function`的已经声明和定义。
 
 示例：
 
@@ -46,9 +44,7 @@ sum(1, 2)
 
 变量提升只发生在当前的作用域
 
-
-
-## 带var和不带var的区别
+## 带 var 和不带 var 的区别
 
 - 全局作用域中可以不带`var`声明变量，但是建议带上，不带相当于给`window`设置一个属性
 - 私有作用域，带`var`的是私有变量，不带的会向上级作用域查找
@@ -59,7 +55,7 @@ a = 12 // == window.a
 console.log(a) // 12
 console.log(window.a) // 12
 
-var a = b = 12 // 这里的 b 也是不带 var 的
+var a = (b = 12) // 这里的 b 也是不带 var 的
 // ! 相当于
 var a = 12
 b = 12
@@ -71,17 +67,18 @@ b = 12
 
 ```js
 console.log(a, b)
-var a = 12, b = 'bbb'
+var a = 12,
+  b = 'bbb'
 function foo() {
   console.log(a, b)
-  var a = b = 13
+  var a = (b = 13)
   console.log(a, b)
 }
 foo()
 console.log(a, b)
 ```
 
-4处我的回答是：
+4 处我的回答是：
 
 ```js
 // undefined undefined
@@ -104,13 +101,13 @@ console.log(a, b)
 其中第二个就是局部作用域的变量提升引起的，可以看成这样
 
 ```js
-function foo(){
+function foo() {
   var a = 13
-  b =13
+  b = 13
 }
 ```
 
-所以a是变量提升，log的是undefined，b是向上找到window.b
+所以 a 是变量提升，log 的是 undefined，b 是向上找到 window.b
 
 再看一题：
 
@@ -137,7 +134,7 @@ console.log(a)
 // 2
 ```
 
-因为b没有带`var`，所以就直接设置的window.b属性
+因为 b 没有带`var`，所以就直接设置的 window.b 属性
 
 下一题：
 
@@ -152,9 +149,9 @@ function foo() {
 foo()
 ```
 
-可能先入为主以为可以正常log，实际上是直接报错`ReferenceError: a is not defined`
+可能先入为主以为可以正常 log，实际上是直接报错`ReferenceError: a is not defined`
 
-因为第一个log那里并没有找到window.a，下面的a也没有变量提升，所以直接报错
+因为第一个 log 那里并没有找到 window.a，下面的 a 也没有变量提升，所以直接报错
 
 下一道是一个经典面试题：
 
@@ -164,7 +161,7 @@ console.log(v1)
 console.log(v2)
 console.log(v3)
 function fn() {
-  var v1 = v2 = v3 = 111
+  var v1 = (v2 = v3 = 111)
   console.log(v1)
   console.log(v2)
   console.log(v3)
@@ -194,7 +191,7 @@ function print() {
 print()
 ```
 
-都输出111，很明显function有变量提升
+都输出 111，很明显 function 有变量提升
 
 - 匿名函数
 
@@ -220,9 +217,9 @@ if (false) {
 console.log(a)
 ```
 
-输出是2个undefined，因为：**在当前作用域中不管条件是否成立都会进行变量提升**
+输出是 2 个 undefined，因为：**在当前作用域中不管条件是否成立都会进行变量提升**
 
-- 在if的`( )`中的表达式不会变量提升
+- 在 if 的`( )`中的表达式不会变量提升
 
 ```js
 var y = 1
@@ -268,7 +265,7 @@ console.log('val' in window)
 - 带 var 和 带 function 重名条件下，函数先执行变量提升
 
 ```js
-console.log(a)// 函数
+console.log(a) // 函数
 var a = 1
 function a() {
   console.log(1)
@@ -285,7 +282,7 @@ function a() {
 var a = 1
 ```
 
-输出都是函数，也就是说函数声明的变量会覆盖var的变量提升
+输出都是函数，也就是说函数声明的变量会覆盖 var 的变量提升
 
 ```js
 var a = undefined
@@ -517,4 +514,3 @@ var a = 10
 ## 总结
 
 感觉还是有点乱，这个有点难理解，面试前建议再看几遍
-

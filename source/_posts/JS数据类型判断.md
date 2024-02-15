@@ -5,54 +5,48 @@ tags:
   - 面试
   - 前端
 categories: 面试
-cover: 'https://www.doowebs.es/wp-content/uploads/2016/08/javascript-1.png'
+cover: 'https://pic.imgdb.cn/item/65cdd6cf9f345e8d032f5627.jpg'
 abbrlink: 1583
 date: 2024-01-25 15:46:49
 ---
 
-# JS数据类型判断
+# JS 数据类型判断
 
-> 参考文章：[每天搞透一道JS手写题💪「Day1数据类型判断+手写instanceof」](https://juejin.cn/post/7275551289965084724)
-
-
+> 参考文章：[每天搞透一道 JS 手写题 💪「Day1 数据类型判断+手写 instanceof」](https://juejin.cn/post/7275551289965084724)
 
 ## typeof
 
 可以区分基础类型，但是对于引用数据类型都会返回`object`，对类会返回`function`，对`null`返回`object`
 
 ```js
-log(typeof 'Ken'); // string
-log(typeof 3.14); // number
-log(typeof false); // boolean
-log(typeof function () {}); // function
-log(typeof undefined); // undefined
-log(typeof [1, 2, 3, 4]); // object
-log(typeof { name: 'Ken', age: 18 }); // object
-log(typeof new Date()); // object
-log(typeof null); // object
-log(typeof Object); // function
-log(typeof Number); // function
+log(typeof 'Ken') // string
+log(typeof 3.14) // number
+log(typeof false) // boolean
+log(typeof function () {}) // function
+log(typeof undefined) // undefined
+log(typeof [1, 2, 3, 4]) // object
+log(typeof { name: 'Ken', age: 18 }) // object
+log(typeof new Date()) // object
+log(typeof null) // object
+log(typeof Object) // function
+log(typeof Number) // function
 ```
-
-
 
 ## instanceof
 
-直接检测构造函数的`prototype`属性是否出现在某个实例对象的原型链上。由于基础数据类型、undefined、null没有构造函数，所以返回false
+直接检测构造函数的`prototype`属性是否出现在某个实例对象的原型链上。由于基础数据类型、undefined、null 没有构造函数，所以返回 false
 
 ```js
-log(123 instanceof Number); // false
-log(new Number(123) instanceof Number); // true
+log(123 instanceof Number) // false
+log(new Number(123) instanceof Number) // true
 
-log('123' instanceof String); // false
-log(new String('123') instanceof String); // true
+log('123' instanceof String) // false
+log(new String('123') instanceof String) // true
 
-log([] instanceof Array); // true
-log({} instanceof Object); // true
-log(function () {} instanceof Function); // true
+log([] instanceof Array) // true
+log({} instanceof Object) // true
+log(function () {} instanceof Function) // true
 ```
-
-
 
 ## constructor
 
@@ -60,31 +54,27 @@ log(function () {} instanceof Function); // true
 
 能判判断基础类型和引用类型，但是不能判断`undefined`和`null`
 
-
-
 ```js
-const o1 = {};
-log(o1.constructor === Object); // true
+const o1 = {}
+log(o1.constructor === Object) // true
 
-const o2 = new Object();
-log(o2.constructor === Object); // true
+const o2 = new Object()
+log(o2.constructor === Object) // true
 
-const a1 = [];
-log(a1.constructor === Array); // true
+const a1 = []
+log(a1.constructor === Array) // true
 
-const a2 = new Array();
-log(a2.constructor === Array); // true
+const a2 = new Array()
+log(a2.constructor === Array) // true
 
-const n = 3;
-log(n.constructor === Number); // true
+const n = 3
+log(n.constructor === Number) // true
 
-log(undefined.constructor);
+log(undefined.constructor)
 // TypeError: Cannot read properties of undefined (reading 'constructor')
-log(null.constructor);
+log(null.constructor)
 // TypeError: Cannot read properties of null (reading 'constructor')
 ```
-
-
 
 ## [Object.prototype.toString.call()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/toString)
 
@@ -100,32 +90,26 @@ log(null.constructor);
 
 这里的 `call()` 方法, 是为了改变 `Object.prototype.toString` 这个函数中的 `this` 指向。让 `Object.prototype.toString` 这个方法的 `this` 指向我们所传入的数据。
 
-
-
 ## 手写
-
-
 
 ### [instanceof](https://github.com/Juns-g/js-handwrite/blob/master/src/instanceof.js)
 
 ```js
 export function myInstanceof(left, right) {
-	// 左侧必须是object
-	if (Object(left) !== left) return false;
-	// 对于右侧参数可以认为只能为函数, 且不能没有Prototype属性
-	if (typeof right !== 'function' || !right.prototype) {
-		throw new Error('Right-hand side of "instanceof" is not an object');
-	}
-	let proto = left.__proto__;
-	while (proto !== null) {
-		if (proto === right.prototype) return true;
-		proto = proto.__proto__;
-	}
-	return false;
+  // 左侧必须是object
+  if (Object(left) !== left) return false
+  // 对于右侧参数可以认为只能为函数, 且不能没有Prototype属性
+  if (typeof right !== 'function' || !right.prototype) {
+    throw new Error('Right-hand side of "instanceof" is not an object')
+  }
+  let proto = left.__proto__
+  while (proto !== null) {
+    if (proto === right.prototype) return true
+    proto = proto.__proto__
+  }
+  return false
 }
 ```
-
-
 
 ### 精确判断类型
 
@@ -133,6 +117,6 @@ export function myInstanceof(left, right) {
 
 ```js
 // 精准的typeof，使用Object.prototype.toString.call()
-export const myTypeOf = (data) => Object.prototype.toString.call(data).slice(8, -1).toLowerCase();
+export const myTypeOf = data =>
+  Object.prototype.toString.call(data).slice(8, -1).toLowerCase()
 ```
-

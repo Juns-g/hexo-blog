@@ -5,7 +5,7 @@ tags:
   - 面试
   - 前端
 categories: 面试
-cover: "https://w.wallhaven.cc/full/3l/wallhaven-3lw5g9.jpg"
+cover: 'https://pic.imgdb.cn/item/65cdd6cf9f345e8d032f5627.jpg'
 abbrlink: 40630
 date: 2023-05-09 16:50:01
 ---
@@ -14,8 +14,8 @@ date: 2023-05-09 16:50:01
 
 ## let，const，var
 
-1. var 声明变量的作用域是函数级别的，不受块级作用域的限制。在全局作用域中声明的变量会成为全局对象的属性。 
-2. let 声明的变量是块级作用域的，只在声明的块内有效。在 for 循环中，每次迭代都会创建一个新的变量。 
+1. var 声明变量的作用域是函数级别的，不受块级作用域的限制。在全局作用域中声明的变量会成为全局对象的属性。
+2. let 声明的变量是块级作用域的，只在声明的块内有效。在 for 循环中，每次迭代都会创建一个新的变量。
 3. const 声明的变量也是块级作用域的，和 let 类似，但是其值不能被重新赋值，只能被赋值一次。
 
 ## 数据类型
@@ -47,21 +47,21 @@ date: 2023-05-09 16:50:01
 ## 判断数据类型
 
 ```js
-typeof 3; // 'number'
-typeof "a"; // 'string'
-typeof true; // 'boolean'
-typeof undefined; // 'undefined'
-typeof Symbol(); // 'symbol'
+typeof 3 // 'number'
+typeof 'a' // 'string'
+typeof true // 'boolean'
+typeof undefined // 'undefined'
+typeof Symbol() // 'symbol'
 
 // 特殊
-typeof BigInt(10); // 'bigint'
+typeof BigInt(10) // 'bigint'
 //
-typeof null; // 'object'
-typeof {}; // 'object'
-typeof new Map(); // 'object'
-typeof new Set(); // 'object'
+typeof null // 'object'
+typeof {} // 'object'
+typeof new Map() // 'object'
+typeof new Set() // 'object'
 // 函数
-typeof function () {}; // 'funtion'
+typeof function () {} // 'funtion'
 ```
 
 1. `typeof`
@@ -160,35 +160,35 @@ forEach 只能遍历，不能改动原数组，map 返回新数组
     没有initialValue的时候previousValue初始值默认为数组的第一项，此时循环从数组的第二项开始，有第二个参数的时候previousValue为第二个参数值，此时循环从数组的第一项开始。
 */
 
-const arr = [2, 4, 7, 2, 3, 3];
+const arr = [2, 4, 7, 2, 3, 3]
 
 // 求和
-const sum = arr.reduce((lastValue, nowValue) => lastValue + nowValue);
-console.log(sum);
+const sum = arr.reduce((lastValue, nowValue) => lastValue + nowValue)
+console.log(sum)
 
 // 求平均
 const average = arr.reduce((lastValue, nowValue, index, arr) => {
-  lastValue += nowValue;
-  if (index == arr.length - 1) return lastValue / arr.length;
-  else return lastValue;
-});
-console.log(average);
+  lastValue += nowValue
+  if (index == arr.length - 1) return lastValue / arr.length
+  else return lastValue
+})
+console.log(average)
 
 // 求value在arr中出现的次数
 function repeatCount(arr: number[], value: number) {
-  if (!arr || arr.length == 0) return 0;
+  if (!arr || arr.length == 0) return 0
   return arr.reduce((totalCount, item) => {
-    if (item == value) totalCount++;
-    return totalCount;
-  }, 0);
+    if (item == value) totalCount++
+    return totalCount
+  }, 0)
 }
-console.log(repeatCount(arr, 3));
+console.log(repeatCount(arr, 3))
 
 // 求最大值
-let max = arr.reduce((last, now) => Math.max(last, now));
-console.log(max);
+let max = arr.reduce((last, now) => Math.max(last, now))
+console.log(max)
 
-export {};
+export {}
 ```
 
 ### [filter](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
@@ -198,23 +198,23 @@ export {};
 // 筛选过滤
 // 语法：
 // array.filter(function(item, index, arr), thisValue)
-let arr1: number[] = [1, 2, 3, -3, 6, 78];
+let arr1: number[] = [1, 2, 3, -3, 6, 78]
 
 // 找出大于4的元素
-let arr2: number[] = arr1.filter((item: number) => item > 4);
-console.log(arr2); // [ 6, 78 ]
+let arr2: number[] = arr1.filter((item: number) => item > 4)
+console.log(arr2) // [ 6, 78 ]
 
 // 将指定类型的对象找出来
 let arr3: { name: string; type: string }[] = [
-  { name: "张三", type: "A" },
-  { name: "李四", type: "B" },
-  { name: "王五", type: "A" },
-];
+  { name: '张三', type: 'A' },
+  { name: '李四', type: 'B' },
+  { name: '王五', type: 'A' },
+]
 
-let arr4 = arr3.filter((item) => item.type === "A");
-console.log(arr4);
+let arr4 = arr3.filter(item => item.type === 'A')
+console.log(arr4)
 
-export {};
+export {}
 ```
 
 ## for...in 和 for...of
@@ -226,28 +226,28 @@ in 获取的是键名，of 是键值对的值
 for...of 可以配合 for 循环的语句使用，可以随时跳出循环
 
 ```js
-let arr = [1, 2, 5];
+let arr = [1, 2, 5]
 
 let obj = {
   age: 18,
-  name: "张三",
+  name: '张三',
   info: {
-    sex: "男",
+    sex: '男',
   },
-};
+}
 
 for (let i of arr) {
-  console.log(i); // 直接是值
+  console.log(i) // 直接是值
 }
 for (let i in arr) {
-  console.log("i:", i, ",arr[i]:", arr[i]);
+  console.log('i:', i, ',arr[i]:', arr[i])
   // i: 0 ,arr[i]: 1
   // i: 1 ,arr[i]: 2
   // i: 2 ,arr[i]: 5
 }
 
 for (let i in obj) {
-  console.log("i:", i, ",obj[i]:", obj[i]);
+  console.log('i:', i, ',obj[i]:', obj[i])
   // i: name ,obj[i]: 张三
   // i: age ,obj[i]: 18
   // i: info ,obj[i]: { sex: '男' }
@@ -302,22 +302,22 @@ for (let i in obj) {
 
 ```js
 // person 的构造函数是 Person
-person.__proto__ === Person.prototype;
+person.__proto__ === Person.prototype
 ```
 
 ```js
 // Person 的构造函数是 Object
-Person.__proto__ === Function.prototype;
+Person.__proto__ === Function.prototype
 ```
 
 ```js
 // Person 的构造函数是 Object
-Object.__proto__ === Function.prototype;
+Object.__proto__ === Function.prototype
 ```
 
 ```js
 // Object 的原型的__proto__指向 null
-Object.prototype.__proto__ === null;
+Object.prototype.__proto__ === null
 ```
 
 总结：
@@ -329,37 +329,37 @@ Object.prototype.__proto__ === null;
 
 ```js
 function Person(name) {
-  this.name = name;
-  this.age = 18;
+  this.name = name
+  this.age = 18
   this.sayName = () => {
-    console.log(this.name);
-  };
+    console.log(this.name)
+  }
 }
 
-let person = new Person("张三");
-console.log("🚀 ~ person:", person);
+let person = new Person('张三')
+console.log('🚀 ~ person:', person)
 
 // 这俩个是一样的
-console.log("🚀 ~ person.__proto__:", person.__proto__);
-console.log("🚀 ~ Person.prototype:", Person.prototype);
+console.log('🚀 ~ person.__proto__:', person.__proto__)
+console.log('🚀 ~ Person.prototype:', Person.prototype)
 
 // person 的构造函数是 Person
 console.log(
-  "🚀 ~ person.__proto__ === Person.prototype:",
+  '🚀 ~ person.__proto__ === Person.prototype:',
   person.__proto__ === Person.prototype
-);
+)
 
 // Person 的构造函数是 Object
 console.log(
-  "🚀 ~ Person.__proto__ === Object.prototype:",
+  '🚀 ~ Person.__proto__ === Object.prototype:',
   Person.__proto__ === Function.prototype
-);
+)
 
 // Object 的构造函数是 Function
 console.log(
-  "🚀 ~ Object.__proto__ === Function.prototype:",
+  '🚀 ~ Object.__proto__ === Function.prototype:',
   Object.__proto__ === Function.prototype
-);
+)
 ```
 
 ![](https://tsejx.github.io/javascript-guidebook/static/prototype-chain.bbfd7b97.jpg)
@@ -384,15 +384,15 @@ console.log(
 
 ```js
 function outerFn() {
-  let outerText = "我是outerFn";
+  let outerText = '我是outerFn'
   function innerFn() {
-    console.log("outerText:", outerText);
+    console.log('outerText:', outerText)
   }
-  return innerFn;
+  return innerFn
 }
 
-let res = outerFn();
-res(); // 输出：我是outerFn
+let res = outerFn()
+res() // 输出：我是outerFn
 ```
 
 **用途：**
@@ -401,18 +401,18 @@ res(); // 输出：我是outerFn
 
   ```js
   function add() {
-    let count = 0;
+    let count = 0
     function addCount() {
-      count++;
-      console.log(count);
+      count++
+      console.log(count)
     }
-    return addCount;
+    return addCount
   }
 
-  let test = add();
-  test(); //1
-  test(); //2
-  test(); //3
+  let test = add()
+  test() //1
+  test() //2
+  test() //3
   ```
 
 - 做缓存
@@ -457,24 +457,24 @@ JavaScript 的异步任务根据事件分类分为两种：宏任务（MacroTask
 ![事件循环机制中宏任务和微任务图解](https://tsejx.github.io/javascript-guidebook/static/workflow.7125d86b.jpg)
 
 ```js
-console.log(1);
+console.log(1)
 
 setTimeout(() => {
-  console.log(2);
-}, 0);
+  console.log(2)
+}, 0)
 
-let promise = new Promise((res) => {
-  console.log(3);
-  resolve();
+let promise = new Promise(res => {
+  console.log(3)
+  resolve()
 })
-  .then((res) => {
-    console.log(4);
+  .then(res => {
+    console.log(4)
   })
-  .then((res) => {
-    console.log(5);
-  });
+  .then(res => {
+    console.log(5)
+  })
 
-console.log(6);
+console.log(6)
 
 // 1 3 6 4 5 2
 // 先是1，然后setTimeout把2放到了宏任务里面，然后是Promise的3，并且吧4和5放到了promise的微任务里面，然后是6，然后45，然后2
@@ -482,32 +482,32 @@ console.log(6);
 
 ```js
 setTimeout(() => {
-  console.log(1);
+  console.log(1)
   Promise.resolve().then(() => {
-    console.log(7);
-  });
-}, 0);
+    console.log(7)
+  })
+}, 0)
 
-console.log(2);
+console.log(2)
 
 Promise.resolve().then(() => {
-  console.log(3);
-});
+  console.log(3)
+})
 
 setTimeout(() => {
-  console.log(8);
+  console.log(8)
   setTimeout(() => {
-    console.log(5);
-  }, 0);
-}, 0);
+    console.log(5)
+  }, 0)
+}, 0)
 
 setTimeout(() => {
   Promise.resolve().then(() => {
-    console.log(4);
-  });
-}, 0);
+    console.log(4)
+  })
+}, 0)
 
-console.log(6);
+console.log(6)
 
 // 2 6 3 1 7 8 4 5
 ```
@@ -540,30 +540,30 @@ promise.all 等：https://juejin.cn/post/7069805387490263047
 
 ```js
 const obj1 = {
-  name: "obj",
+  name: 'obj',
   age: 21,
   info: {
-    desc: "我是obj11111",
+    desc: '我是obj11111',
   },
-};
-
-const obj2 = {};
-
-for (let key in obj1) {
-  obj2[key] = obj1[key];
 }
 
-console.log("obj2:", JSON.stringify(obj2));
+const obj2 = {}
+
+for (let key in obj1) {
+  obj2[key] = obj1[key]
+}
+
+console.log('obj2:', JSON.stringify(obj2))
 // obj2: {"name":"obj","age":21,"info":{"desc":"我是obj11111"}}
-obj1.info.desc = "我修改了obj1的info的desc";
-console.log("obj2:", JSON.stringify(obj2));
+obj1.info.desc = '我修改了obj1的info的desc'
+console.log('obj2:', JSON.stringify(obj2))
 // obj2: {"name":"obj","age":21,"info":{"desc":"我修改了obj1的info的desc"}}
 ```
 
 ES6 提供了语法糖`Object.assgin()`
 
 ```js
-Object.assign(obj2, obj1);
+Object.assign(obj2, obj1)
 // 将 obj1 拷贝给 obj2
 ```
 
@@ -571,39 +571,39 @@ Object.assign(obj2, obj1);
 
 ```js
 const obj1 = {
-  name: "obj",
+  name: 'obj',
   age: 19,
   info: {
-    desc: "我是obj11111",
+    desc: '我是obj11111',
   },
   arr: [1, 2, 3],
-};
+}
 
-let obj2 = {};
+let obj2 = {}
 
-deepCopy(obj2, obj1);
+deepCopy(obj2, obj1)
 
-console.log("obj1:", JSON.stringify(obj1));
+console.log('obj1:', JSON.stringify(obj1))
 // obj1: {"name":"obj","age":19,"info":{"desc":"我是obj11111"},"arr":[1,2,3]}
-console.log("obj2:", JSON.stringify(obj2));
+console.log('obj2:', JSON.stringify(obj2))
 // obj2: {"name":"obj","age":19,"info":{"desc":"我是obj11111"},"arr":[1,2,3]}
-obj1.info.desc = "我修改了obj1的info的desc";
-console.log("obj1:", JSON.stringify(obj1));
+obj1.info.desc = '我修改了obj1的info的desc'
+console.log('obj1:', JSON.stringify(obj1))
 // obj1: {"name":"obj","age":19,"info":{"desc":"我修改了obj1的info的desc"},"arr":[1,2,3]}
-console.log("obj2:", JSON.stringify(obj2));
+console.log('obj2:', JSON.stringify(obj2))
 // obj2: {"name":"obj","age":19,"info":{"desc":"我是obj11111"},"arr":[1,2,3]}
 
 function deepCopy(newObj, oldObj) {
   for (let key in oldObj) {
-    let item = oldObj[key];
+    let item = oldObj[key]
     if (item instanceof Array) {
-      newObj[key] = [];
-      deepCopy(newObj[key], item);
+      newObj[key] = []
+      deepCopy(newObj[key], item)
     } else if (item instanceof Object) {
-      newObj[key] = {};
-      deepCopy(newObj[key], item);
+      newObj[key] = {}
+      deepCopy(newObj[key], item)
     } else {
-      newObj[key] = item;
+      newObj[key] = item
     }
   }
 }
@@ -615,39 +615,39 @@ function deepCopy(newObj, oldObj) {
 const _completeDeepClone = (target, map = new Map()) => {
   // 1. 需要考虑函数、正则、日期、ES6新对象
   // 2. 需要考虑循环引用问题
-  if (typeof target !== "object") return target;
-  if (!target) return target;
-  const types = ["Function", "RegExp", "Date", "Symbol", "Map", "Set"];
-  const constructor = target.constructor;
-  if (types.includes(constructor.name)) return new constructor(target);
-  if (map.get(target)) return map.get(target);
-  map.set(target, true);
-  const res = new constructor();
+  if (typeof target !== 'object') return target
+  if (!target) return target
+  const types = ['Function', 'RegExp', 'Date', 'Symbol', 'Map', 'Set']
+  const constructor = target.constructor
+  if (types.includes(constructor.name)) return new constructor(target)
+  if (map.get(target)) return map.get(target)
+  map.set(target, true)
+  const res = new constructor()
   for (let key in target) {
     if (target.hasOwnProperty(key)) {
-      res[key] = _completeDeepClone(target[key], map);
+      res[key] = _completeDeepClone(target[key], map)
     }
   }
-  return res;
-};
+  return res
+}
 ```
 
 ## 节流防抖
 
->  [【offer 收割机之手写系列】10 分钟带你掌握原理并手写防抖与节流的立即/非立即执行版本 ](https://juejin.cn/post/7078870853315723301)
+> [【offer 收割机之手写系列】10 分钟带你掌握原理并手写防抖与节流的立即/非立即执行版本 ](https://juejin.cn/post/7078870853315723301)
 
 节流
 
 ```js
 function throttle(fn, timeout) {
-  let timer = null;
+  let timer = null
   return function (...arg) {
-    if (timer) return;
+    if (timer) return
     timer = setTimeout(() => {
-      fn.apply(fn, arg);
-      timer = null;
-    }, timeout);
-  };
+      fn.apply(fn, arg)
+      timer = null
+    }, timeout)
+  }
 }
 ```
 
@@ -655,17 +655,15 @@ function throttle(fn, timeout) {
 
 ```js
 function debounce(fn, wait) {
-  let timer = null;
+  let timer = null
   return function () {
-    if (timer) clearTimeout(timer);
+    if (timer) clearTimeout(timer)
     timer = setTimeout(() => {
-      fn.apply(this, arguments);
-    }, wait);
-  };
+      fn.apply(this, arguments)
+    }, wait)
+  }
 }
 ```
-
-
 
 ## [正则](https://web.qianguyihao.com/04-JavaScript%E5%9F%BA%E7%A1%80/34-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AE%80%E4%BB%8B)
 
@@ -702,41 +700,41 @@ function debounce(fn, wait) {
 
 ```js
 function objectFactory() {
-  let newObject = null;
-  let constructor = Array.prototype.shift.call(arguments);
-  let result = null;
+  let newObject = null
+  let constructor = Array.prototype.shift.call(arguments)
+  let result = null
   // 判断参数是否是一个函数
-  if (typeof constructor !== "function") {
-    console.error("type error");
-    return;
+  if (typeof constructor !== 'function') {
+    console.error('type error')
+    return
   }
   // 新建一个空对象，对象的原型为构造函数的 prototype 对象
-  newObject = Object.create(constructor.prototype);
+  newObject = Object.create(constructor.prototype)
   // 将 this 指向新建对象，并执行函数
-  result = constructor.apply(newObject, arguments);
+  result = constructor.apply(newObject, arguments)
   // 判断返回对象
   let flag =
-    result && (typeof result === "object" || typeof result === "function");
+    result && (typeof result === 'object' || typeof result === 'function')
   // 判断返回结果
-  return flag ? result : newObject;
+  return flag ? result : newObject
 }
 // 使用方法
-objectFactory(构造函数, 初始化参数);
+objectFactory(构造函数, 初始化参数)
 ```
 
 ```js
 const _new = function () {
-  let newObj = null;
-  let res = null;
-  let constructor = Array.prototype.shift.apply(arguments);
-  if (typeof constructor !== "function") {
-    throw new TypeError("传入参数不是函数");
+  let newObj = null
+  let res = null
+  let constructor = Array.prototype.shift.apply(arguments)
+  if (typeof constructor !== 'function') {
+    throw new TypeError('传入参数不是函数')
   }
-  newObj = Object.create(constructor.prototype);
-  res = constructor.apply(newObj, arguments);
-  let flag = res && (typeof res === "object" || typeof res === "function");
-  return flag ? res : newObj;
-};
+  newObj = Object.create(constructor.prototype)
+  res = constructor.apply(newObj, arguments)
+  let flag = res && (typeof res === 'object' || typeof res === 'function')
+  return flag ? res : newObj
+}
 ```
 
 ## call，apply，bind
@@ -817,13 +815,13 @@ function handleResponse(data) { console.log(data); }
 
 ```html
 <script>
-  let script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = "http://juejin.com/xxx?callback=handleCallback";
-  document.body.appendChild(script);
+  let script = document.createElement('script')
+  script.type = 'text/javascript'
+  script.src = 'http://juejin.com/xxx?callback=handleCallback'
+  document.body.appendChild(script)
 
   function handleCallback(res) {
-    console.log(res);
+    console.log(res)
   }
 </script>
 ```

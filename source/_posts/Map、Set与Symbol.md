@@ -5,7 +5,7 @@ tags:
   - 学习
 keywords: 学习 前端 TS
 categories: 前端
-cover: 'https://www.doowebs.es/wp-content/uploads/2016/08/javascript-1.png'
+cover: 'https://pic.imgdb.cn/item/65cdd6cf9f345e8d032f5627.jpg'
 abbrlink: 30706
 date: 2024-01-30 14:21:34
 ---
