@@ -361,3 +361,9 @@ function deepCopy(target, map = new WeakMap()) {
   return cloneTarget
 }
 ```
+
+## 参考文章
+
+- [如何写出一个惊艳面试官的深拷贝?](https://juejin.cn/post/6844903929705136141)
+- [JavaScript 提升：掌握深拷贝与浅拷贝的技巧及如何手写深拷贝](https://juejin.cn/post/7305213173896773658)
+- [JS 深拷贝的原生终结者 structuredClone API](https://juejin.cn/post/7080433165264748557)
