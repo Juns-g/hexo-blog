@@ -7,6 +7,10 @@
   home_essay: true
   top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
+    - content: 同源策略、跨域
+      date: 2024/2/18
+      link: https://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html
+
     - content: 还真的尝试手写出了一小部分的 Vue 😆
       date: 2024/2/12
       link: https://juns-g.github.io/posts/40037
