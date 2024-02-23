@@ -17,7 +17,7 @@ date: 2024-02-16 13:05:59
 
 ## 宽松相等算法
 
-JS 的行为遵循 ES 语言说明书，其中这个`==`的底层原理定义在`[IsLooselyEqual(x, y)](https://262.ecma-international.org/#sec-islooselyequal)`，这个也叫宽松相等算法。
+JS 的行为遵循 ES 语言说明书，其中这个`==`的底层原理定义在[IsLooselyEqual(x, y)](https://262.ecma-international.org/#sec-islooselyequal)，这个也叫宽松相等算法。
 
 这里直接翻译一下他的定义：
 
@@ -243,7 +243,3 @@ console.log(2 == new String('3'))
 
 - [前端进阶：== 运算符哪里难了？手写 == 底层原理根本没在怕的](https://juejin.cn/post/7281536730900103180)
 - [7.2.14 IsLooselyEqual](https://262.ecma-international.org/#sec-islooselyequal)
-
-```
-
-```
