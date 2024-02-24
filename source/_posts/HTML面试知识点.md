@@ -6,7 +6,7 @@ tags:
   - 前端
 categories: 面试
 keywords: HTML 面试 八股
-cover: "https://dogefs.s3.ladydaily.com/~/source/unsplash/photo-1676594038305-c0e855ca2d96?ixid=M3w0MjI2NjN8MHwxfHRvcGljfHxxUFlzRHp2Sk9ZY3x8fHx8Mnx8MTY4NDI5MjM2MHw&ixlib=rb-4.0.3&w=2560&h=1440&fmt=webp"
+cover: 'https://dogefs.s3.ladydaily.com/~/source/unsplash/photo-1676594038305-c0e855ca2d96?ixid=M3w0MjI2NjN8MHwxfHRvcGljfHxxUFlzRHp2Sk9ZY3x8fHx8Mnx8MTY4NDI5MjM2MHw&ixlib=rb-4.0.3&w=2560&h=1440&fmt=webp'
 abbrlink: 6635
 date: 2023-05-09 16:47:23
 ---

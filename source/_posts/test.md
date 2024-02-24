@@ -11,6 +11,6 @@ date: 2023-05-09 15:00:37
 # test
 
 ```js
-    let test = "test";
-    console.log(test)
+let test = 'test'
+console.log(test)
 ```

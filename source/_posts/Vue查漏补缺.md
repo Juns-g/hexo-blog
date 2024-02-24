@@ -11,17 +11,17 @@ abbrlink: 43040
 date: 2023-05-22 21:29:01
 ---
 
-# Vue查漏补缺
+# Vue 查漏补缺
 
 ## [v-bind](https://cn.vuejs.org/api/built-in-directives.html#v-bind)
 
-### **绑定class**
+### **绑定 class**
 
 1. 对象方式
 
 `  <h1 :class="{ red: isRed, black: !isRed }">index</h1>`
 
-渲染出来就是`class="red"`，也可以在js里面声明对象，再添加
+渲染出来就是`class="red"`，也可以在 js 里面声明对象，再添加
 
 格式：`{active: boolean}`
 
@@ -35,14 +35,14 @@ date: 2023-05-22 21:29:01
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from "vue";
-let color: Ref<string> = ref("black");
-let isRed: Ref<boolean> = ref(true);
-let title: Ref<string> = ref("title");
+import { ref, type Ref } from 'vue'
+let color: Ref<string> = ref('black')
+let isRed: Ref<boolean> = ref(true)
+let title: Ref<string> = ref('title')
 </script>
 ```
 
-### 绑定style
+### 绑定 style
 
 1. 对象方式
 
@@ -62,9 +62,9 @@ let title: Ref<string> = ref("title");
 
 ```ts
 const info: Ref<object> = ref({
-  name: "t",
+  name: 't',
   age: 18,
-});
+})
 ```
 
 ## [v-on](https://cn.vuejs.org/api/built-in-directives.html#v-on)
@@ -101,11 +101,12 @@ const info: Ref<object> = ref({
 </template>
 
 <script setup lang="ts">
-import { NButton } from "naive-ui";
+import { NButton } from 'naive-ui'
 
 function btnClick(e: Event) {
-  console.log(e);
+  console.log(e)
 }
+</script>
 ```
 
 调用函数传参写`event`的时候要加`$`
@@ -119,52 +120,58 @@ function btnClick(e: Event) {
 </template>
 
 <script setup lang="ts">
-import { NButton } from "naive-ui";
+import { NButton } from 'naive-ui'
 
 function btnClick(e: Event, name: string) {
-  console.log(e, name);
+  console.log(e, name)
 }
+</script>
 ```
 
 ## v-for
 
-可以使用in或者of，第一个参数是`item`，第二个参数是`index`，可以遍历数组和对象，对象的话就是`value`和`key`以及`index`，小括号加不加都可以 
+可以使用 in 或者 of，第一个参数是`item`，第二个参数是`index`，可以遍历数组和对象，对象的话就是`value`和`key`以及`index`，小括号加不加都可以
 
 ```vue
 <template>
   <ul>
-    <li v-for="(list, index) of lists" :key="list">{{ index }}.{{ list }}</li>
+    <li
+      v-for="(list, index) of lists"
+      :key="list"
+    >
+      {{ index }}.{{ list }}
+    </li>
   </ul>
 </template>
 
 <script setup lang="ts">
-import { ref, type Ref } from "vue";
-const lists: Ref<string[]> = ref(["海贼王", "火影忍者", "哔哩哔哩"]);
+import { ref, type Ref } from 'vue'
+const lists: Ref<string[]> = ref(['海贼王', '火影忍者', '哔哩哔哩'])
 </script>
 ```
 
-也可以用来遍历数字，但是是从1开始的，`v-for= "i in 10"`就是1-10，`v-for="(n,index) in 10"`，索引是0-9
+也可以用来遍历数字，但是是从 1 开始的，`v-for= "i in 10"`就是 1-10，`v-for="(n,index) in 10"`，索引是 0-9
 
-对于是否有key，vue调用的方法是不同的，这里可以深入源码读一读`packages\runtime-core\src\renderer.ts`
+对于是否有 key，vue 调用的方法是不同的，这里可以深入源码读一读`packages\runtime-core\src\renderer.ts`
 
 ## computed
 
-对比直接使用function或者watch，有缓存，依赖的数据不变化就直接返回缓存
+对比直接使用 function 或者 watch，有缓存，依赖的数据不变化就直接返回缓存
 
 ```ts
-import { computed } from "vue";
-let a = ref(1);
-let b = ref(2);
-let c = computed(() => a.value + b.value);
+import { computed } from 'vue'
+let a = ref(1)
+let b = ref(2)
+let c = computed(() => a.value + b.value)
 ```
 
-写全了就可以有get和set，默认就是用get
+写全了就可以有 get 和 set，默认就是用 get
 
 ```ts
 let c = computed(() => {
-  get: () => {};
-  set: () => {};
-});
+  get: () => {}
+  set: () => {}
+})
 ```
 
 ## v-model
@@ -174,6 +181,3 @@ let c = computed(() => {
 `<input v-model="text">`就是
 
 `<input :value="text" @input="event => text = event.target.value">`
-
-
-

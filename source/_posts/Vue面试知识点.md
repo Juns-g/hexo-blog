@@ -5,7 +5,7 @@ tags:
   - 面试
   - 前端
 categories: 面试
-cover: "https://w.wallhaven.cc/full/9d/wallhaven-9d28vd.png"
+cover: 'https://w.wallhaven.cc/full/9d/wallhaven-9d28vd.png'
 abbrlink: 19697
 date: 2023-05-09 16:50:23
 ---
@@ -62,27 +62,27 @@ Vue 响应式原理是 Vue 框架的核心，它实现了数据和视图的双�
 语法：`Object.defineProperty(obj, prop, descriptor)`
 
 ```js
-let person = {};
-let nameT = "张三";
+let person = {}
+let nameT = '张三'
 
 // 在person对象上添加了一个属性叫 nameString ,这个属性的值是 nameT
-Object.defineProperty(person, "nameString", {
+Object.defineProperty(person, 'nameString', {
   get() {
-    return nameT;
+    return nameT
   },
   set(val) {
-    nameT = val;
+    nameT = val
   },
-});
+})
 
 //当读取person对象的nameString属性时，触发get方法
-console.log(person.nameString);
+console.log(person.nameString)
 // 直接修改nameT变量的值
-nameT = "李四";
-console.log(person.nameString);
+nameT = '李四'
+console.log(person.nameString)
 // 当设置person对象的nameString属性时，触发set方法
-person.nameString = "王五";
-console.log(person.nameString);
+person.nameString = '王五'
+console.log(person.nameString)
 ```
 
 - 监听对象的多个属性比较麻烦
@@ -97,29 +97,29 @@ console.log(person.nameString);
 
 ```js
 let person = {
-  name: "张三",
+  name: '张三',
   age: 12,
-};
+}
 
 let handler = {
   get(obj, key) {
-    console.log("get");
-    return key in obj ? obj[key] : "不存在";
+    console.log('get')
+    return key in obj ? obj[key] : '不存在'
   },
   set(obj, key, val) {
-    console.log("set");
-    obj[key] = val;
+    console.log('set')
+    obj[key] = val
     // MDN上明确指出set()方法应该返回一个布尔值，否则会报错TypeError。
-    return true;
+    return true
   },
-};
+}
 
 // 代理对象
-let proxy = new Proxy(person, handler);
+let proxy = new Proxy(person, handler)
 
-console.log(proxy.name);
-proxy.age = 15;
-console.log(proxy.age);
+console.log(proxy.name)
+proxy.age = 15
+console.log(proxy.age)
 ```
 
 ## [vue2 和 vue3 的区别](https://juejin.cn/post/7160962909332307981#heading-2)
@@ -166,7 +166,7 @@ console.log(proxy.age);
 3. `provide`和`inject`传递数据，父传子，但是层级深也可以
 4. `Vuex`或者`Pinia`，状态管理工具
 
-Vue3中的：
+Vue3 中的：
 
 1. `props/context`：通过 props 将数据从父组件传递给子组件，在子组件中使用 setup 函数中的 context 对象访问父组件的属性或方法。
 2. `provide/inject`：与 props/context 类似，provide/inject 同样用于父子组件之间的通信，但是它可以让祖先组件向所有后代组件注入数据，而不仅仅是直接后代组件。
@@ -174,11 +174,7 @@ Vue3中的：
 4. `EventBus/Emitter`：与 Vue2 类似，可以使用一个独立的 Vue 实例作为事件总线，在组件之间发送和接收自定义事件。
 5. `Vuex 4.x/Pinia`: 可以使用 Vuex 来管理全局状态，但是在 Vue3 中有了更好的支持，使用新的 API 替换了旧 API，并且提供了更好的类型安全性和开箱即用的响应式需求。
 
-
-
 **父组件调用子组件的方法：**
-
-
 
 ## Router 路由
 
@@ -206,11 +202,7 @@ SPA 单页面应用，首屏渲染慢
 
 使用场景：登录判断，未登录用户跳转到 login 页面
 
-
-
 ### 一些面试题
-
-
 
 ## Pinia
 
