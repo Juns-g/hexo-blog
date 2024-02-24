@@ -1,9 +1,11 @@
 ---
 title: 第一次用Mac怎么做？
-tags: MacBook 数码
+tags:
+  - MacBook
+  - 数码
 categories: 数码
 keywords: 科技 数码 MacBook 苹果电脑
-cover: "https://chongdiantou-images.oss-cn-shenzhen.aliyuncs.com/wp-content/uploads/2022/07/2022071409434851.jpeg"
+cover: 'https://chongdiantou-images.oss-cn-shenzhen.aliyuncs.com/wp-content/uploads/2022/07/2022071409434851.jpeg'
 abbrlink: 28536
 date: 2023-05-23 00:16:12
 ---
@@ -16,7 +18,7 @@ date: 2023-05-23 00:16:12
 
 - 鼠标设置，取消自然滚动，速度拉满
 - 触控板设置，速度自己选，勾上轻点来点按
-- 三指拖拽：辅助功能，指针控制，触控板选项
+- 三指拖拽：辅助功能，指针控制，触控板选项，拖移样式
 - 要安装其他软件：隐私与安全性，允许从。。。，如果没有任何来源选项就终端输入`sudo spctl --master-disable`
 - 显示电量百分比：电池
 - 外观，显示滚动条，始终
