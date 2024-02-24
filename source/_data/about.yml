@@ -30,9 +30,11 @@
   careers:
     tips: 生涯
     title: 无限进步
-    item:
-      - 电子信息工程专业
-    img: https://img02.anzhiy.cn/adminuploads/1/2022/09/26/6330e9bcc39cc.png
+    list:
+      - desc: 电子信息工程专业
+      - desc: 2023.5 ~ 2023.11, 小红书实习
+      - desc: 2024.4 ~ 现在, 字节跳动实习
+    img: https://img2.imgtp.com/2024/02/24/THs0RDuF.png
   statistic:
     link: /archives
     text: 文章隧道
@@ -40,19 +42,19 @@
   map:
     title: 我现在住在
     StrengthenTitle: 中国，河北省
-    background: https://img02.anzhiy.cn/adminuploads/1/2022/09/24/632e6f48981d8.jpg
-    backgroundDark: https://img02.anzhiy.cn/adminuploads/1/2022/09/26/6330ebf1f3e65.jpg
+    background: https://pic.imgdb.cn/item/65d9a68c9f345e8d03751705.jpg
+    backgroundDark: https://pic.imgdb.cn/item/65d9a68c9f345e8d03751705.jpg
   selfInfo:
     selfInfoTips1: 生于
     selfInfoContentYear: 2003
     selfInfoTips2: 东北大学
     selfInfoContent2: 电子信息工程
     selfInfoTips3: 现在职业
-    selfInfoContent3: 大二学生👨‍🎓
+    selfInfoContent3: 大三学生🤓
   personalities:
     author_name: 鉴赏家
     personality_type: ISTP-A
-    photo_url: https://pic2.imgdb.cn/item/6459f9d00d2dde57770320e6.jpg
+    photo_url: https://pic.imgdb.cn/item/65d9a75c9f345e8d037749ce.jpg
     personality_img: https://www.16personalities.com/static/images/personality-types/avatars/email/large/ISTP_male.png?v=1
     name_url: https://www.16personalities.com/ch/istp-%E4%BA%BA%E6%A0%BC
   maxim:
@@ -65,32 +67,32 @@
     buff_bottom: 脾气好指数 MAX
   game:
     game_tips: 爱好游戏
-    game_title: 蛋仔派对
-    game_uid: "UID: null"
-    game_bg: https://pic2.imgdb.cn/item/6459fbe20d2dde5777050707.jpg
+    game_title: 光遇
+    game_uid: 'UID: null'
+    game_bg: https://pic.imgdb.cn/item/65d9ada29f345e8d03892aa0.jpg
   comic:
     comic_tips: 爱好番剧
     comic_title: 追番
     comic_list:
-      - name: 约定的梦幻岛
-        href: https://www.bilibili.com/bangumi/media/md5267750/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/63988658aa1b1.webp
-      - name: 咒术回战
-        href: https://www.bilibili.com/bangumi/media/md28229899/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/6398864e572ed.webp
-      - name: 紫罗兰永恒花园
-        href: https://www.bilibili.com/bangumi/media/md8892/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/639886315d658.webp
-      - name: 鬼灭之刃
-        href: https://www.bilibili.com/bangumi/media/md22718131/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/639886403d472.webp
-      - name: JOJO的奇妙冒险 黄金之风
-        href: https://www.bilibili.com/bangumi/media/md135652/?spm_id_from=666.25.b_6d656469615f6d6f64756c65.1
-        cover: https://img02.anzhiy.cn/adminuploads/1/2022/12/13/6398862649585.webp
+      - name: 因为太怕痛就全点防御力了
+        href: https://www.bilibili.com/bangumi/media/md28224137
+        cover: https://pic.imgdb.cn/item/65d9af659f345e8d038e1ee1.jpg
+      - name: 天使降临到我身边
+        href: https://www.bilibili.com/bangumi/media/md4316442
+        cover: https://pic.imgdb.cn/item/65d9aef29f345e8d038cd811.jpg
+      - name: 盾之勇者成名录
+        href: https://www.bilibili.com/bangumi/media/md4316482
+        cover: https://pic.imgdb.cn/item/65d9afc79f345e8d038f286c.jpg
+      - name: 约会大作战
+        href: https://www.bilibili.com/bangumi/media/md4188
+        cover: https://pic.imgdb.cn/item/65d9b0259f345e8d0390c38e.jpg
+      - name: 刀剑神域
+        href: https://www.bilibili.com/bangumi/media/md24755609
+        cover: https://pic.imgdb.cn/item/65d9b08f9f345e8d03924cfb.jpg
   like:
     like_tips: 关注偏好
     like_title: 数码科技
-    like_bg: https://img02.anzhiy.cn/adminuploads/1/2022/09/24/632f0dd8f33c6.webp
+    like_bg: https://pic.imgdb.cn/item/65d9b0da9f345e8d03931905.jpg
     like_bottom: 手机、电脑软硬件
   music:
     music_tips: 音乐偏好

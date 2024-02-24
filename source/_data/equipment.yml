@@ -1,0 +1,41 @@
+- class_name: 好物
+  description: 实物装备推荐
+  tip: 跟 Juns 一起享受科技带来的乐趣
+  top_background: https://pic.imgdb.cn/item/65d9b20b9f345e8d039670a2.jpg
+  good_things:
+    - title: 生产力
+      description: 提升自己生产效率的硬件设备
+      equipment_list:
+        - name: MacBook Pro 2021 14 英寸
+          specification: M1 Pro 16G / 512GB
+          description: 屏幕显示效果好、色彩准确、对比度强、性能强劲、续航优秀。可以用来开发和设计。
+          image: https://www.apple.com.cn/v/mac/compare/z/images/overview/compare_macbook_pro_14_silver__vhx3tykmuluu_large_2x.jpg
+          link: https://www.apple.com.cn/macbook-pro/
+        - name: 联想小新 Pro 16 2024
+          specification: 黑 16G / 512GB
+          description: 大学第一台笔记本
+          image: https://pic.imgdb.cn/item/65d9b47f9f345e8d039d2c62.jpg
+          link: https://item.lenovo.com.cn/product/1022159.html
+        - name: 魅族 20
+          specification: 独白 12G / 512GB
+          description: 白面板YYDS，极佳的震动手感，外观特好看，Flyme也十分舒适
+          image: https://pic.imgdb.cn/item/65d9b5079f345e8d039ea4b3.jpg
+          link: https://www.meizu.com/20/spec
+        - name: 魅族 17
+          specification: 独角兽 8G / 128GB
+          description: 白面板，极小右上角前置摄像头，炫彩的白色后壳
+          image: https://pic.imgdb.cn/item/65d9b5959f345e8d03a00b9c.jpg
+          link: https://www.meizu.com/17/spec/
+    - title: 出行
+      description: 用来出行的实物及设备
+      equipment_list:
+        - name: 小米手环 8 NFC
+          specification: 黑色
+          description: 续航无焦虑，样式众多，体验极佳
+          image: https://pic.imgdb.cn/item/65d9b6119f345e8d03a14b60.jpg
+          link: https://www.mi.com/xiaomi-shouhuan-8
+        - name: NATIONAL GEOGRAPHIC学生书包🎒
+          specification: 卡其色
+          description: 颜值在线且实用。
+          image: https://pic.imgdb.cn/item/65d9b6bc9f345e8d03a2f2dd.jpg
+          link: https://npcitem.jd.hk/100069402831.html
