@@ -7,6 +7,16 @@
   home_essay: true
   top_background: https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exwgw8.png?w=2560&h=720&fmt=webp
   essay_list:
+    - content: 看了一个讲解ISTP的视频，我难得这么有耐心看完，感觉讲的挺符合我的诶🥸
+      date: 2024/3/3
+      link: https://www.bilibili.com/video/BV1cT411t7eR
+    - content: 今天要去海边别墅🏠团建，明天就去🚄北京啦
+      date: 2024/3/3
+    - content: 今天没学，📱到了，玩了大半天😆
+      date: 2024/3/2
+      image:
+        - https://pic.imgdb.cn/item/65e409289f345e8d031130dd.jpg
+        - https://pic.imgdb.cn/item/65e409289f345e8d031131ec.jpg
     - content: Arc浏览器有新的icon啦
       date: 2024/3/1
       link: https://arc.net/gift/60341c68
