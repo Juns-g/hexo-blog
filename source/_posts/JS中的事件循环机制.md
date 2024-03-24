@@ -305,6 +305,7 @@ log('script end')
 ```
 
 其中 async 的部分可以改成如下的 promise 的话就是
+关键点可以看这个文章：[我终于搞懂了 async/await、promise 和 setTimeout 的执行顺序](https://juejin.cn/post/7171002835016892453)
 // promise2
 // promise3
 // async1 end
