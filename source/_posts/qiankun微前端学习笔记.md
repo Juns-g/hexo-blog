@@ -3,8 +3,7 @@ title: qiankun微前端学习笔记
 tags:
   - 微前端
   - 学习
-cover: >-
-  https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/ex/wallhaven-exrqrr.jpg?w=2560&h=1440&fmt=webp
+cover: 'https://files.codelife.cc/wallhaven/full/vg/wallhaven-vg8mo8.jpg?x-oss-process=image/resize,limit_0,m_fill,w_2560,h_1440/quality,Q_92/format,webp'
 keywords: 学习 前端 微前端 qiankun
 categories: 前端
 abbrlink: 20669

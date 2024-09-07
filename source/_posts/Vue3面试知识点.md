@@ -5,8 +5,7 @@ tags:
   - 面试
   - 前端
 categories: 面试
-cover: >-
-  https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/2y/wallhaven-2y1op9.jpg?w=2560&h=1440&fmt=webp
+cover: 'https://files.codelife.cc/wallhaven/full/jx/wallhaven-jx8815.png?x-oss-process=image/resize,limit_0,m_fill,w_2560,h_1440/quality,Q_92/format,webp'
 abbrlink: 7649
 date: 2024-01-23 21:52:54
 ---

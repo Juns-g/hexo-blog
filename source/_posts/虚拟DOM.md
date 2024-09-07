@@ -4,8 +4,7 @@ tags:
   - 学习
   - 前端
 categories: 前端
-cover: >-
-  https://dogefs.s3.ladydaily.com/~/source/wallhaven/full/5g/wallhaven-5gypg8.png?w=2560&h=1440&fmt=webp
+cover: 'https://files.codelife.cc/wallhaven/full/3z/wallhaven-3z2j2d.jpg?x-oss-process=image/resize,limit_0,m_fill,w_2560,h_1440/quality,Q_92/format,webp'
 abbrlink: 5749
 date: 2024-01-31 19:23:20
 ---
