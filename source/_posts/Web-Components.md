@@ -105,7 +105,103 @@ window.customElements.define('my-button', MyButton)
 <my-button></my-button>
 ```
 
-## 生命周期
+### 添加 attributes
+
+组件是需要支持一些静态属性的，下面根据文档给我们自定义的 button 添加一些静态属性支持
+
+```js
+const template = document.createElement('template')
+template.innerHTML = `
+    <style>
+        button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+    </style>
+
+    <button>我是自定义按钮</button>
+`
+
+class MyButton extends HTMLElement {
+  constructor() {
+    super()
+
+    const content = template.content.cloneNode(true)
+    const shadow = this.attachShadow({ mode: 'open' })
+
+    const buttonText = this.getAttribute('text') || '我是自定义按钮'
+    content.querySelector('button').innerHTML = buttonText
+
+    shadow.appendChild(content)
+  }
+}
+
+setTimeout(() => {
+  window.customElements.define('my-button', MyButton)
+}, 100)
+```
+
+```html
+<script src="./index.js"></script>
+
+<my-button text="自定义内容"></my-button>
+<my-button text="自定义"></my-button>
+```
+
+这样我们就实现了静态属性的支持，可以根据不同的属性，自己判断显示内容。不过这个还是有待完善的，当我们在外部改变 text 属性的时候，里面的内容没有更新，因为我们只在初始化的时候获取了一次属性，所以我们需要添加一个监听属性变化的方法。
+
+```js
+const template = document.createElement('template')
+template.innerHTML = `
+    <style>
+        button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+    </style>
+
+    <button>我是自定义按钮</button>
+`
+
+class MyButton extends HTMLElement {
+  // 俩种写法都可以
+  static observedAttributes = ['text']
+  /* static get observedAttributes() {
+    return ['text']
+  } */
+  constructor() {
+    super()
+
+    const content = template.content.cloneNode(true)
+    const shadow = this.attachShadow({ mode: 'open' })
+    shadow.appendChild(content)
+    this.renderText()
+  }
+  renderText() {
+    const buttonText = this.getAttribute('text') || '我是自定义按钮'
+    this.shadowRoot.querySelector('button').innerHTML = buttonText
+  }
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.renderText()
+  }
+}
+
+setTimeout(() => {
+  window.customElements.define('my-button', MyButton)
+}, 100)
+```
+
+我们可以使用上面的 api 来实现监听属性变化的功能，这样当我们在外部改变 text 属性的时候，里面的内容也会随之改变。
+
+### 生命周期
 
 简单分析代码可以知道，我们使用一个类来表示一个组件，这就有点像 react 的类组件了，那么理论上也是有一些生命周期的概念的。
 
@@ -115,3 +211,13 @@ window.customElements.define('my-button', MyButton)
 > - disconnectedCallback()：每当元素从文档中移除时调用。
 > - adoptedCallback()：每当元素被移动到新文档中时调用。
 > - attributeChangedCallback()：在属性更改、添加、移除或替换时调用。有关此回调的更多详细信息，请参见响应属性变化。
+
+由此可见，我们上面其实不太规范，我们把渲染操作放到了 constructor 中，规范应该是放到 connectedCallback 中，这样可以保证在元素添加到文档中时才会渲染。
+
+除此之外，我们也可以利用生命周期方法，做一些其他的操作。
+
+## 实践
+
+下面尝试根据上面的知识，实现一个简单的按钮组件，并在 solid 组件中使用它。
+
+> TODO
