@@ -220,4 +220,102 @@ setTimeout(() => {
 
 下面尝试根据上面的知识，实现一个简单的按钮组件，并在 solid 组件中使用它。
 
-> TODO
+> 代码仓库地址: [https://github.com/Juns-g/solid_web_component](https://github.com/Juns-g/solid_web_component)
+
+```ts
+// MyButton.ts, web component
+const COLOR_MAP = {
+  primary: '#007bff',
+  danger: 'red',
+}
+
+const template = document.createElement('template')
+template.innerHTML = `
+    <style>
+        button {
+            color: white;
+            background-color: var(--button-color,${COLOR_MAP.primary});
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+    }
+    </style>
+
+    <button>默认文案</button>
+`
+
+class MyButton extends HTMLElement {
+  static observedAttributes = ['text', 'color']
+
+  constructor() {
+    super()
+
+    const content = template.content.cloneNode(true)
+    const shadow = this.attachShadow({ mode: 'open' })
+    shadow.appendChild(content)
+  }
+
+  connectedCallback() {
+    console.log('挂载')
+    this.render()
+  }
+
+  render() {
+    const btn = this.shadowRoot!.querySelector('button') as HTMLButtonElement
+
+    // text
+    const buttonText = this.getAttribute('text') || '我是自定义按钮'
+    btn!.innerHTML = buttonText
+
+    // color
+    const color = (this.getAttribute('color') ||
+      'primary') as keyof typeof COLOR_MAP
+    btn.style.setProperty('--button-color', COLOR_MAP[color])
+
+    // handleClick
+    btn.onclick = () => {
+      this.dispatchEvent(new Event('handleClick'))
+    }
+  }
+
+  attributeChangedCallback(name: string, oldValue: string, newValue: string) {
+    console.log('attribute change', { name, oldValue, newValue })
+    this.render()
+  }
+}
+
+setTimeout(() => {
+  window.customElements.define('my-button', MyButton)
+}, 100)
+```
+
+```tsx
+import { createEffect, createSignal } from 'solid-js'
+
+export const Buttons = () => {
+  let buttonsRef: HTMLDivElement | undefined
+  const [btnText, setBtnText] = createSignal('我是按钮')
+  createEffect(() => {
+    const btn = buttonsRef!.querySelector('my-button') as HTMLElement
+    btn.setAttribute('text', btnText())
+  })
+  return (
+    <div
+      class='flex items-center justify-center gap-3'
+      ref={buttonsRef}
+    >
+      <my-button
+        on:handleClick={(event: MouseEvent) => {
+          console.log('点击了按钮', event)
+          setBtnText('我被点击了')
+        }}
+      />
+      <my-button
+        text='danger按钮'
+        color='danger'
+      />
+    </div>
+  )
+}
+```
