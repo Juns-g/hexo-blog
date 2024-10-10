@@ -319,3 +319,121 @@ export const Buttons = () => {
   )
 }
 ```
+
+这只是一个十分简单的实践，具体情况还可以优化很多地方。
+
+## 拓展
+
+### Lit
+
+[Lit](https://lit.dev/docs/)是 Google 开发的一个用于构建快速，轻量级 Web 组件的简单库。他在原生的基础上提供了一些状态相关的逻辑，以及更好的模板语法支持，下面是他官网的一个例子。
+
+```ts
+import { LitElement, html, css } from 'lit'
+import { customElement, property, state } from 'lit/decorators.js'
+
+@customElement('my-timer')
+export class MyTimer extends LitElement {
+  static styles = css`...`
+
+  @property() duration = 60
+  @state() private end: number | null = null
+  @state() private remaining = 0
+
+  render() {
+    const { remaining, running } = this
+    const min = Math.floor(remaining / 60000)
+    const sec = pad(min, Math.floor((remaining / 1000) % 60))
+    const hun = pad(true, Math.floor((remaining % 1000) / 10))
+    return html`
+      ${min ? `${min}:${sec}` : `${sec}.${hun}`}
+      <footer>
+        ${remaining === 0
+          ? ''
+          : running
+          ? html`<span @click=${this.pause}>${pause}</span>`
+          : html`<span @click=${this.start}>${play}</span>`}
+        <span @click=${this.reset}>${replay}</span>
+      </footer>
+    `
+  }
+
+  start() {
+    this.end = Date.now() + this.remaining
+    this.tick()
+  }
+
+  pause() {
+    this.end = null
+  }
+
+  reset() {
+    const running = this.running
+    this.remaining = this.duration * 1000
+    this.end = running ? Date.now() + this.remaining : null
+  }
+
+  tick() {
+    if (this.running) {
+      this.remaining = Math.max(0, this.end! - Date.now())
+      requestAnimationFrame(() => this.tick())
+    }
+  }
+
+  get running() {
+    return this.end && this.remaining
+  }
+
+  connectedCallback() {
+    super.connectedCallback()
+    this.reset()
+  }
+}
+
+function pad(pad: unknown, val: number) {
+  return pad ? String(val).padStart(2, '0') : val
+}
+```
+
+### Omi
+
+官网地址: [https://github.com/Tencent/omi/blob/master/README.CN.md](https://github.com/Tencent/omi/blob/master/README.CN.md)
+
+> - 📶 信号 Signal 驱动的响应式编程，reactive-signal 强力驱动
+> - 🧱 TDesign Web 组件
+> - ⚡ 微小的尺寸，极速的性能
+> - 💗 目标 100+ 模板 & OMI 模板源码
+> - 🐲 OMI Form & OMI Form 游乐场 & Lucide Omi 图标
+> - 🌐 你要的一切都有: Web Components, JSX, Function Components, Router, Suspense, Directive, > - Tailwindcss...
+> - 💒 使用 Constructable Stylesheets 轻松管理和共享样式
+
+示例代码：
+
+```ts
+import { render, signal, tag, Component, h } from 'omi'
+
+const count = signal(0)
+
+function add() {
+  count.value++
+}
+
+function sub() {
+  count.value--
+}
+
+@tag('counter-demo')
+export class CounterDemo extends Component {
+  static css = 'span { color: red; }'
+
+  render() {
+    return (
+      <>
+        <button onClick={sub}>-</button>
+        <span>{count.value}</span>
+        <button onClick={add}>+</button>
+      </>
+    )
+  }
+}
+```
