@@ -5,8 +5,7 @@ tags:
   - 数码
 categories: 数码
 keywords: 科技 数码 MacBook 苹果电脑
-cover: >-
-  https://chongdiantou-images.oss-cn-shenzhen.aliyuncs.com/wp-content/uploads/2022/07/2022071409434851.jpeg
+cover: 'https://files.codelife.cc/wallpaper/wallspic/20230505529l83.jpeg?x-oss-process=image/resize,limit_0,m_fill,w_2560,h_1440/quality,Q_95/format,webp'
 abbrlink: 31184
 date: 2024-11-26 20:29:59
 ---
