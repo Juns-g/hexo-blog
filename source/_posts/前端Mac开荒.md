@@ -118,3 +118,29 @@ date: 2024-11-26 20:29:59
 - [nrm](https://www.npmjs.com/package/nrm): node 源管理工具
 - Xcode Command Line Tools: `xcode-select --install`
 - git: `brew install git`
+
+## 浏览器插件
+
+- [AdGuard](https://chromewebstore.google.com/detail/adguard-%E5%B9%BF%E5%91%8A%E6%8B%A6%E6%88%AA%E5%99%A8/bgnkhhnnamicmpeenaelnjfhikgbkllg): 广告拦截
+- [B 站视频加速](https://chromewebstore.google.com/detail/b%E7%AB%99%E8%A7%86%E9%A2%91%E5%8A%A0%E9%80%9F/bafpamoambgfonlompfahchphghplnnk)
+- [codebox](https://chromewebstore.google.com/detail/codebox-%E4%B8%80%E9%94%AE%E5%A4%8D%E5%88%B6%E4%BB%A3%E7%A0%81%E4%B8%8B%E8%BD%BD%E6%96%87%E7%AB%A0/acnnhjllgegbndgknlliobjlekgilbdf): 代码复制
+- [Dark Reader](https://chromewebstore.google.com/detail/dark-reader/eimadpbcbfnmbkopoojfekhnkhdbieeh): 夜间模式
+- [DeepL](https://chromewebstore.google.com/detail/deepl%EF%BC%9A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%BF%BB%E8%AF%91%E5%99%A8%E5%92%8C%E5%86%99%E4%BD%9C%E5%8A%A9%E6%89%8B/cofdbpoegempjloogbagkncekinflcnj): 翻译
+- [iCloud](https://chromewebstore.google.com/detail/icloud-%E5%AF%86%E7%A0%81/pejdijmoenmkgeppbflobdenhhabjlaj): 密码管理
+- [iTab](https://chromewebstore.google.com/detail/itab%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E5%85%8D%E8%B4%B9chatgpt/mhloojimgilafopcmlcikiidgbbnelip): 标签页管理
+- [React 开发者工具](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+- [Vimium C](https://chromewebstore.google.com/detail/vimium-c-%E5%85%A8%E9%94%AE%E7%9B%98%E6%93%8D%E4%BD%9C%E6%B5%8F%E8%A7%88%E5%99%A8/hfjbmagddngcpeloejdejnfgbamkjaeg): vim 操作浏览器
+- [VisBug](https://chromewebstore.google.com/detail/visbug/cdockenadnadldjbbgcallicgledbeoc): css
+- [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
+- [Wappalyzer](https://chromewebstore.google.com/detail/wappalyzer-technology-pro/gppongmhjkpfnbhagpmjfkannfbllamg): 网站技术检测
+- [弹幕画中画播放器](https://chromewebstore.google.com/detail/%E5%BC%B9%E5%B9%95%E7%94%BB%E4%B8%AD%E7%94%BB%E6%92%AD%E6%94%BE%E5%99%A8/nahbabjlllhocabmecfjmcblchhpoclj)
+- [沉浸式翻译](https://chromewebstore.google.com/detail/%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%BF%BB%E8%AF%91-%E7%BD%91%E9%A1%B5%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6-pdf%E7%BF%BB%E8%AF%91-%E5%85%8D%E8%B4%B9/bpoadfkcbjbfhfodiogcnhhhpibjhbnh)
+- [浮图秀](https://chromewebstore.google.com/detail/%E6%B5%AE%E5%9B%BE%E7%A7%80/mgpdnhlllbpncjpgokgfogidhoegebod)
+- [油猴](https://chromewebstore.google.com/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4%E6%B5%8B%E8%AF%95%E7%89%88/gcalenpjmijncebpfijmoaglllgpjagf)
+
+## 油猴插件
+
+- [CSDN 过滤广告](https://update.greasyfork.org/scripts/378351/%F0%9F%94%A5%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%F0%9F%94%A5%20CSDN%E5%B9%BF%E5%91%8A%E5%AE%8C%E5%85%A8%E8%BF%87%E6%BB%A4%E3%80%81%E4%BA%BA%E6%80%A7%E5%8C%96%E8%84%9A%E6%9C%AC%E4%BC%98%E5%8C%96%EF%BC%9A%F0%9F%86%95%20%E4%B8%8D%E7%94%A8%E5%86%8D%E7%99%BB%E5%BD%95%E4%BA%86%EF%BC%81%E8%AE%A9%E4%BD%A0%E4%BD%93%E9%AA%8C%E4%BB%A4%E4%BA%BA%E6%83%8A%E5%96%9C%E7%9A%84%E5%B4%AD%E6%96%B0CSDN%E3%80%82.user.js)
+- [自动替换链接](https://greasyfork.org/scripts/422773-%E9%93%BE%E6%8E%A5%E5%8A%A9%E6%89%8B/code/%E9%93%BE%E6%8E%A5%E5%8A%A9%E6%89%8B.user.js)
+- [BiliBili](https://update.greasyfork.org/scripts/415714/Make%20BiliBili%20Great%20Again.user.js)
+- [BiliBili 自定义首页](https://update.greasyfork.org/scripts/443530/bilibili-app-recommend.user.js)
